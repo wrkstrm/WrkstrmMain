@@ -1,7 +1,7 @@
 // swift-tools-version: 5.9
 import PackageDescription
 
-let package: Package = .init(
+let package = Package(
     name: "WrkstrmMain",
     products: [
         .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
