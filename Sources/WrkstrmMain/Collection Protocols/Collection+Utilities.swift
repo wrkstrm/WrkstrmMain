@@ -33,8 +33,8 @@ extension Collection where Element: Comparable, Index == Int {
   private func merge<T: Comparable>(left: [T], right: [T]) -> [T] {
     var mergedArray = ArraySlice<T>()
 
-    var left = ArraySlice(left)
-    var right = ArraySlice(right)
+    var left: ArraySlice = .init(left)
+    var right: ArraySlice = .init(right)
 
     while !left.isEmpty, !right.isEmpty {
       if left.first! < right.first! {  // swiftlint:disable:this force_unwrapping
