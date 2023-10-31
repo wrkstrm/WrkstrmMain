@@ -12,7 +12,7 @@ final class BinaryTreeTests: XCTestCase {
     ("testRandomTreeCount", testRandomTreeCount),
   ]
 
-  var tree = BinaryTree(1)
+  var tree: BinaryTree = .init(1)
 
   func testBasicInsertion() {
     tree.insert(3)
@@ -26,7 +26,7 @@ final class BinaryTreeTests: XCTestCase {
   }
 
   func testRandomTreeCount() {
-    let randomTree = BinaryTree(1)
+    let randomTree: BinaryTree = .init(1)
     let randomCount = Int.random(in: 0...10)
     (0..<randomCount).forEach { _ in
       randomTree.insert(Int.random(in: 0...10))
