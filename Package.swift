@@ -4,8 +4,10 @@ import PackageDescription
 let package = Package(
     name: "WrkstrmMain",
     platforms: [
-      .macOS(.v13),
       .iOS(.v16),
+      .macOS(.v13),
+      .tvOS(.v16),
+      .watchOS(.v9),
     ],
     products: [
         .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
