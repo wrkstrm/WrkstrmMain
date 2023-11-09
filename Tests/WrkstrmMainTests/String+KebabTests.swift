@@ -1,6 +1,11 @@
 import XCTest
 
 class StringKebabTests: XCTestCase {
+  static var allTests = [
+    ("testSimpleCamelCaseToKebabCase", testSimpleCamelCaseToKebabCase),
+    ("testAllUppercaseCamelCaseToKebabCase", testAllUppercaseCamelCaseToKebabCase),
+    ("testAlreadyKebabCase", testAlreadyKebabCase),
+  ]
   
   func testSimpleCamelCaseToKebabCase() {
     XCTAssertEqual("helloWorld".camelCaseToKebabCase(), "hello-world")
