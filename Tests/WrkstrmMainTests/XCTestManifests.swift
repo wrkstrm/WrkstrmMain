@@ -3,9 +3,9 @@ import XCTest
 
 public func allTests() -> [XCTestCaseEntry] {
   [
-    testCase(StringExtensionTests.testSimpleCamelCaseToKebabCase),
-    testCase(StringExtensionTests.testAllUppercaseCamelCaseToKebabCase),
-    testCase(StringExtensionTests.testAlreadyKebabCase)
+    testCase(StringKebabTests.testSimpleCamelCaseToKebabCase),
+    testCase(StringKebabTests.testAllUppercaseCamelCaseToKebabCase),
+    testCase(StringKebabTests.testAlreadyKebabCase)
   ] +
   [
     testCase(BinaryTreeTests.allTests),
