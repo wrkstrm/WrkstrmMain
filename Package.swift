@@ -1,6 +1,13 @@
 // swift-tools-version:5.9
 import PackageDescription
 
+extension SwiftSetting {
+  static let profile: SwiftSetting = .unsafeFlags([
+    "-Xfrontend",
+    "-warn-long-expression-type-checking=25",
+  ])
+}
+
 let package = Package(
     name: "WrkstrmMain",
     platforms: [
@@ -13,7 +20,7 @@ let package = Package(
         .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
     ],
     targets: [
-        .target(name: "WrkstrmMain"),
-        .testTarget(name: "WrkstrmMainTests", dependencies: ["WrkstrmMain"]),
+        .target(name: "WrkstrmMain", swiftSettings: [.profile]),
+        .testTarget(name: "WrkstrmMainTests", dependencies: ["WrkstrmMain"], swiftSettings: [.profile]),
     ]
 )
