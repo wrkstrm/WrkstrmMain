@@ -7,7 +7,7 @@ on:
     branches:
     - main
     paths:
-    - /**
+    - '**'
 jobs:
   swift-test:
     strategy:
@@ -24,10 +24,10 @@ jobs:
       id: cache-spm
       uses: actions/cache@v2
       with:
+        restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
+        path: apple/WrkstrmMain/.build
         key: ${{ runner.os }}-spm-WrkstrmMain-${{ hashFiles('**/Package.resolved')
           }}
-        path: apple/WrkstrmMain/.build
-        restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
     - name: Check cache
       run: 'echo ''Cache hit: ${{ steps.cache-spm.outputs.cache-hit }}'''
     - name: Setup Xcode
