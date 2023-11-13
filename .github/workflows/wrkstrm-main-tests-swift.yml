@@ -1,13 +1,13 @@
 name: "\U0001F6A7 Swift Test| WrkstrmMainTests"
 on:
-  pull_request:
-    branches:
-    - main
   push:
     branches:
     - main
     paths:
     - '**'
+  pull_request:
+    branches:
+    - main
 jobs:
   swift-test:
     strategy:
@@ -22,12 +22,12 @@ jobs:
         submodules: recursive
     - name: Cache Swift PM dependencies
       id: cache-spm
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
-        restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
         path: apple/WrkstrmMain/.build
         key: ${{ runner.os }}-spm-WrkstrmMain-${{ hashFiles('**/Package.resolved')
           }}
+        restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
     - name: Check cache
       run: 'echo ''Cache hit: ${{ steps.cache-spm.outputs.cache-hit }}'''
     - name: Setup Xcode
