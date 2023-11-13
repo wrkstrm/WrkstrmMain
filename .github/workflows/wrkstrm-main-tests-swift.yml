@@ -1,23 +1,19 @@
 name: "\U0001F6A7 Swift Test| WrkstrmMainTests"
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
     paths:
-    - apple/WrkstrmMain/**
-    - .github/workflows/wrkstrm-main-tests-swift.yml
-  pull_request:
-    branches:
-    - main
-defaults:
-  run:
-    working-directory: apple/WrkstrmMain
+    - /**
 jobs:
   swift-test:
     strategy:
       matrix:
         os:
-        - self-hosted
+        - macos-13
         - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
@@ -28,15 +24,15 @@ jobs:
       id: cache-spm
       uses: actions/cache@v2
       with:
-        path: apple/WrkstrmMain/.build
         key: ${{ runner.os }}-spm-WrkstrmMain-${{ hashFiles('**/Package.resolved')
           }}
+        path: apple/WrkstrmMain/.build
         restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
     - name: Check cache
       run: 'echo ''Cache hit: ${{ steps.cache-spm.outputs.cache-hit }}'''
     - name: Setup Xcode
       uses: maxim-lobanov/setup-xcode@v1
-      if: matrix.os == 'macos-latest' || matrix.os == 'self-hosted'
+      if: matrix.os == 'macos-latest' || matrix.os == 'macos-13' || matrix.os == 'self-hosted'
       with:
         xcode-version: '15.0'
     - name: Swift Describe
