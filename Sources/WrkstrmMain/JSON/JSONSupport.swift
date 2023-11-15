@@ -1,5 +1,9 @@
-public typealias JSONDictionary = [String: Any]
+public enum JSON { }
 
-public struct AnyEquatable: Any, Equatable {}
+extension JSON {
+  public typealias Dictionary = [String: Any]
 
-public typealias JSONEquatableDictionary = [String: AnyEquatable]
+  public struct AnyEquatableStruct: Any, Equatable {}
+
+  public typealias AnyEquatableDictionary = [String: AnyEquatableStruct]
+}
