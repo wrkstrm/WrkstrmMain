@@ -1,25 +1,57 @@
 # 🏎️ WrkstrmMain
+
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fwrkstrm%2FWrkstrmMain%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/wrkstrm/WrkstrmMain)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fwrkstrm%2FWrkstrmMain%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/wrkstrm/WrkstrmMain)
 
-## 📖 Description
+---
 
-WrkstrmMain provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
+`WrkstrmMain` provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
+
+## 🔑 Key Features
+
+- **🌐 Extended Swift Library**: Enhancements for string manipulation and collection processing.
+- **🚀 Performance Oriented**: Optimized for efficiency and speed.
+- **🔧 Versatile and Flexible**: Adaptable to a wide range of development needs.
 
 ## Compatibility
 
 - macOS
-- linux
+- Linux
 
-## 💻 Installation
+## 📦 Installation
 
-```bash
-git clone https://github.com/wrkstrm/WrkstrmMain.git
-cd WrkstrmMain
-# Follow specific setup instructions for the project here
+To integrate `WrkstrmMain` into your project, follow these steps:
+
+### 🛠 Swift Package Manager
+
+Add `WrkstrmMain` as a dependency in your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/wrkstrm/WrkstrmMain.git", .upToNextMajor(from: "0.0.0"))
+]
 ```
 
-## 🚀 Usage
+Include `WrkstrmMain` in your target dependencies:
+
+```swift
+targets: [
+    .target(name: "YourTarget", dependencies: ["WrkstrmMain"]),
+]
+```
+
+## 📚 Usage
+
+Import `WrkstrmMain` and utilize its extensions:
+
+1. **📥 Import the Library**:
+
+   ```swift
+   import WrkstrmMain
+   ```
+
+2. **🔨 Utilize Extensions**:
+   Leverage various extensions for enhanced functionality:
 
 Example Extensions:
 
@@ -42,6 +74,10 @@ Example Extensions:
 
 - `Optional<T>` where `T: Comparable & Equatable`: Adds comparison functionality to Optionals.
 
+## 🎨 Customization
+
+Customize and extend `WrkstrmMain` to suit your project's specific needs.
+
 ## 🤝 Contributing
 
 🌟 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -62,4 +98,6 @@ Example Extensions:
 
 ## 💖 Acknowledgments
 
-* Developed by github.com/@rismay
+- Developed by github.com/@rismay
+
+---
