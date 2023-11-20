@@ -4,7 +4,7 @@
 
 ## 📖 Description
 
-🔍 WrkstrmMain provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
+WrkstrmMain provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
 
 ## Compatibility
 
