@@ -4,7 +4,7 @@
 
 ## 📖 Description
 
-🔍 WrkstrmMain provides extensions to the Swift Main library. Tested via github actions.
+🔍 WrkstrmMain provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
 
 ## Compatibility
 
@@ -21,9 +21,24 @@ cd WrkstrmMain
 
 ## 🚀 Usage
 
-```swift
-// Include basic usage examples, preferably in Swift
-```
+### String Extensions
+
+- `camelCaseToKebabCase()`: Convert a camelCase string to kebab-case.
+- `containsUniqueChars()`: Check if a string contains all unique characters.
+- `isPermutation(_:)`: Check if a string is a permutation of another string.
+
+### Collection Extensions
+
+- `search(key:)`: Binary search in a collection.
+- `mergeSort()`: Perform a merge sort on a collection.
+
+### Protocol `AnyFlattenable`
+
+- `flattened()`: Unwrap and flatten any value, potentially to `nil`.
+
+### `Optional` Comparable Extension
+
+- `Optional<T>` where `T: Comparable & Equatable`: Adds comparison functionality to Optionals.
 
 ## 🤝 Contributing
 
@@ -40,7 +55,6 @@ cd WrkstrmMain
 📄 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📬 Contact
-
 
 🔗 Project Link: [https://github.com/wrkstrm/WrkstrmMain](https://github.com/wrkstrm/WrkstrmMain)
 
