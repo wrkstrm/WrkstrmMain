@@ -1,7 +1,7 @@
 public enum JSON { }
 
 extension JSON {
-  public typealias Dictionary = [String: Any]
+  public typealias AnyDictionary = [String: Any]
 
   public struct AnyEquatableStruct: Any, Equatable {}
 
