@@ -21,6 +21,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "WrkstrmMain", swiftSettings: [.profile]),
-        .testTarget(name: "WrkstrmMainTests", dependencies: ["WrkstrmMain"], swiftSettings: [.profile]),
+        .testTarget(
+          name: "WrkstrmMainTests",
+          dependencies: ["WrkstrmMain"],
+          swiftSettings: [.profile]),
     ]
 )
