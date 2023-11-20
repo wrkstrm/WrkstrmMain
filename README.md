@@ -21,6 +21,8 @@ cd WrkstrmMain
 
 ## 🚀 Usage
 
+Example Extensions:
+
 ### String Extensions
 
 - `camelCaseToKebabCase()`: Convert a camelCase string to kebab-case.
