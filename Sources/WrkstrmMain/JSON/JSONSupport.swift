@@ -20,5 +20,5 @@ extension JSON {
   ///
   /// This type is particularly useful when you need a JSON-like dictionary where the values need to be comparable,
   /// such as when checking for changes in values or when implementing certain caching mechanisms.
-  public typealias AnyEquatableDictionary = [String: AnyEquatableStruct]
+  public typealias AnyEquatableStructDictionary = [String: AnyEquatableStruct]
 }
