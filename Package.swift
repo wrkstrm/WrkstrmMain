@@ -22,7 +22,7 @@ let package = Package(
     .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-testing.git", from: "0.10.0"),
+    .package(url: "https://github.com/apple/swift-testing.git", from: "0.9.0"),
   ],
   targets: [
     .target(name: "WrkstrmMain", swiftSettings: [.profile]),
