@@ -1,20 +1,12 @@
-import XCTest
+import Testing
 
 @testable import WrkstrmMain
 
-#if canImport(UIKit)
-import UIKit
-#endif
-
-final class BinaryTreeTests: XCTestCase {
-  static var allTests = [
-    ("testBasicInsertion", testBasicInsertion),
-    ("testRandomTreeCount", testRandomTreeCount),
-  ]
+struct BinaryTreeTests {
 
   var tree: BinaryTree = .init(1)
 
-  func testBasicInsertion() {
+  @Test func basicInsertion() {
     tree.insert(3)
     tree.insert(5)
     tree.insert(7)
@@ -22,15 +14,15 @@ final class BinaryTreeTests: XCTestCase {
     tree.insert(0)
     tree.insert(20)
     tree.insert(11)  // Count == 8
-    XCTAssertTrue(tree.count == 8)
+    #expect(tree.count == 8)
   }
 
-  func testRandomTreeCount() {
+  @Test func randomTreeCount() {
     let randomTree: BinaryTree = .init(1)
     let randomCount = Int.random(in: 0...10)
     (0..<randomCount).forEach { _ in
       randomTree.insert(Int.random(in: 0...10))
     }
-    XCTAssertTrue(randomTree.count == (randomCount + 1))
+    #expect(randomTree.count == (randomCount + 1))
   }
 }

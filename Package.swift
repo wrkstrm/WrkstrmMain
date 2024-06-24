@@ -9,21 +9,29 @@ extension SwiftSetting {
 }
 
 let package = Package(
-    name: "WrkstrmMain",
-    platforms: [
-      .iOS(.v16),
-      .macOS(.v13),
-      .tvOS(.v16),
-      .watchOS(.v9),
-    ],
-    products: [
-        .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
-    ],
-    targets: [
-        .target(name: "WrkstrmMain", swiftSettings: [.profile]),
-        .testTarget(
-          name: "WrkstrmMainTests",
-          dependencies: ["WrkstrmMain"],
-          swiftSettings: [.profile]),
-    ]
+  name: "WrkstrmMain",
+  platforms: [
+    .iOS(.v16),
+    .macOS(.v13),
+    .macCatalyst(.v13),
+    .tvOS(.v16),
+    .visionOS(.v1),
+    .watchOS(.v9),
+  ],
+  products: [
+    .library(name: "WrkstrmMain", targets: ["WrkstrmMain"]),
+  ],
+  dependencies: [
+    .package(url: "https://github.com/apple/swift-testing.git", from: "0.10.0"),
+  ],
+  targets: [
+    .target(name: "WrkstrmMain", swiftSettings: [.profile]),
+    .testTarget(
+      name: "WrkstrmMainTests",
+      dependencies: [
+        "WrkstrmMain",
+        .product(name: "Testing", package: "swift-testing"),
+      ],
+      swiftSettings: [.profile]),
+  ]
 )
