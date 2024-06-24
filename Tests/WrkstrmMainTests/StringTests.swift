@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import WrkstrmFoundation
+@testable import WrkstrmMain
 
 final class StringTests: XCTestCase {
   static var allTests = [
