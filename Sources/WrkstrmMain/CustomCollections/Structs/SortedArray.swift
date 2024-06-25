@@ -1,8 +1,8 @@
 /// An enum representing the result of a search in a sorted array.
 ///
 /// - found(at: N): Indicates that the item was found at a specific index.
-/// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the specified
-/// index to maintain sort order.
+/// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the
+/// specified index to maintain sort order.
 public enum SearchResult<N: Numeric> {
   case found(at: N)
   case notFound(insertAt: N)
@@ -21,8 +21,8 @@ public struct SortedArray<Element>: Collection {
 
   /// Inserts an element into the sorted array.
   ///
-  /// This method performs a binary search to find the correct insertion index for the new element to
-  /// maintain the sorted order.
+  /// This method performs a binary search to find the correct insertion index for the new element
+  /// to maintain the sorted order.
   /// - Parameter element: The element to insert.
   public mutating func insert(_ element: Element) {
     switch search(for: element) {
@@ -50,7 +50,8 @@ public struct SortedArray<Element>: Collection {
 
   /// Performs a binary search for a given element in the sorted array.
   ///
-  /// Returns a `SearchResult` indicating the position where the element is found or should be inserted.
+  /// Returns a `SearchResult` indicating the position where the element is found or should be
+  /// inserted.
   /// - Parameter element: The element to search for.
   /// - Returns: The search result as `SearchResult<Int>`.
   public func search(for element: Element) -> SearchResult<Int> {
@@ -103,7 +104,8 @@ extension SortedArray where Element: Comparable {
   }
 }
 
-/// Extension of `Array` for `Comparable` elements, providing a convenience method to create a `SortedArray`.
+/// Extension of `Array` for `Comparable` elements, providing a convenience method to create a
+/// `SortedArray`.
 extension Array where Element: Comparable {
   /// A computed property that returns a `SortedArray` containing the array's elements.
   public var sortedArray: SortedArray<Element> { SortedArray(unsorted: self) }
