@@ -1,6 +1,6 @@
 /// Extension of `Optional` to conform to `Comparable` when the wrapped type is `Equatable` and `Comparable`.
 ///
-/// This extension allows optional values to be compared using the less-than operator (`<`), provided that 
+/// This extension allows optional values to be compared using the less-than operator (`<`), provided that
 /// the wrapped type conforms to `Equatable` and `Comparable`.
 /// Comparison logic is as follows:
 /// - If both values are non-nil, their wrapped values are compared.
@@ -9,7 +9,7 @@
 extension Optional: Comparable where Wrapped: Equatable & Comparable {
   /// Compares two optional values using the less-than operator.
   ///
-  /// The comparison is based on the wrapped values of the optionals. If both optionals are non-nil, their 
+  /// The comparison is based on the wrapped values of the optionals. If both optionals are non-nil, their
   /// wrapped values are compared. An optional with a value is always greater than an optional without a
   /// value (nil).
   ///
