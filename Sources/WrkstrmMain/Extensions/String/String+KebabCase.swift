@@ -2,10 +2,10 @@
 extension String {
   /// Converts the string from camel case to kebab case.
   ///
-  /// This method iterates through each character of the string. When it encounters an uppercase character,
-  /// it adds a hyphen before it (unless it's the first character) and converts it to lowercase. This
-  /// transformation is particularly useful in contexts where camel case naming needs to be converted to
-  /// kebab case for URL slugs, CSS class names, etc.
+  /// This method iterates through each character of the string. When it encounters an uppercase
+  /// character, it adds a hyphen before it (unless it's the first character) and converts it to
+  /// lowercase. This transformation is particularly useful in contexts where camel case naming
+  /// needs to be converted to kebab case for URL slugs, CSS class names, etc.
   ///
   /// For example, "camelCaseString" becomes "camel-case-string".
   ///
