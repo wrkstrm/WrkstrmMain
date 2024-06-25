@@ -1,6 +1,7 @@
 /// A binary tree data structure that stores values of a generic type.
 ///
-/// A binary tree is a tree data structure in which each node has at most two children, referred to as the left and right child.
+/// A binary tree is a tree data structure in which each node has at most two children, referred to as the 
+/// left and right child.
 public class BinaryTree<Value: Comparable> {
   /// The value stored in this binary tree node.
   public private(set) var value: Value
