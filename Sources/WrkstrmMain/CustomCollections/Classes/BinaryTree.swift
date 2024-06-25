@@ -67,7 +67,7 @@ public class BinaryTree<Value: Comparable> {
     /// Pre-order traversal: Visit the current node before its children.
     case pre
 
-    /// In-order traversal: Visit the left child, then the current node, and finally the right 
+    /// In-order traversal: Visit the left child, then the current node, and finally the right
     /// child.
     case `in`
 

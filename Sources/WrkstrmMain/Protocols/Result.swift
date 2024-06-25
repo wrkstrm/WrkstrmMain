@@ -1,4 +1,4 @@
-/// A value that represents either a success or a failure, including an associated value in each 
+/// A value that represents either a success or a failure, including an associated value in each
 /// case.
 ///
 /// This enum is used for operations that can result in either a successful outcome or an error.

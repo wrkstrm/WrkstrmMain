@@ -6,7 +6,7 @@ extension UInt {
   /// Each element in the array represents a bit position (starting from 0). The method creates a bit mask
   /// by setting each of these positions to 1 in the returned `UInt` value.
   ///
-  /// For example, `bitSet([0, 3])` will return a `UInt` value where the 0th and 3rd bits are set (binary 
+  /// For example, `bitSet([0, 3])` will return a `UInt` value where the 0th and 3rd bits are set (binary
   /// 1001).
   ///
   /// - Parameter bits: An array of `UInt` values where each value represents a bit position to set.

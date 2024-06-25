@@ -1,7 +1,7 @@
 /// An enum representing the result of a search in a sorted array.
 ///
 /// - found(at: N): Indicates that the item was found at a specific index.
-/// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the specified 
+/// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the specified
 /// index to maintain sort order.
 public enum SearchResult<N: Numeric> {
   case found(at: N)
@@ -21,7 +21,7 @@ public struct SortedArray<Element>: Collection {
 
   /// Inserts an element into the sorted array.
   ///
-  /// This method performs a binary search to find the correct insertion index for the new element to 
+  /// This method performs a binary search to find the correct insertion index for the new element to
   /// maintain the sorted order.
   /// - Parameter element: The element to insert.
   public mutating func insert(_ element: Element) {
