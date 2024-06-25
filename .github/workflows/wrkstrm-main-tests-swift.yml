@@ -22,7 +22,7 @@ jobs:
         submodules: recursive
     - name: Cache SPM dependencies
       id: cache-spm
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         restore-keys: ${{ runner.os }}-spm-WrkstrmMain-
         path: apple/WrkstrmMain/.build
