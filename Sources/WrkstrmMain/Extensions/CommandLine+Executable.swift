@@ -1,5 +1,6 @@
 extension CommandLine {
-  /// An array of substrings derived from splitting the first command-line argument by the "/" separator.
+  /// An array of substrings derived from splitting the first command-line argument by the "/"
+  /// separator.
   /// This representation is useful for extracting the executable name and path.
   static let splitArguments: [String.SubSequence] = arguments[0].split(separator: "/")
 
@@ -10,7 +11,8 @@ extension CommandLine {
   /// It's assumed that the first argument (`arguments[0]`) is the path to the executable.
   ///
   /// - Returns: A `String` representing the name of the executable.
-  /// - Warning: This property unwraps the last component of `splitArguments` forcibly. If `splitArguments`
+  /// - Warning: This property unwraps the last component of `splitArguments` forcibly. If
+  /// `splitArguments`
   ///  is empty, this will cause a runtime crash.
   public static var executableName: String {
     String(splitArguments.last!)

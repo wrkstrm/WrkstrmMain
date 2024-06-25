@@ -5,8 +5,8 @@ extension Collection where Element: Comparable, Index == Int {
 
   /// Performs a binary search for a given key in the collection.
   ///
-  /// This method splits the collection into halves to find the key, reducing the search area in each step.
-  /// It returns the index of the key if found, or `nil` if the key is not present.
+  /// This method splits the collection into halves to find the key, reducing the search area in
+  /// each step. It returns the index of the key if found, or `nil` if the key is not present.
   ///
   /// - Parameter key: The element to search for within the collection.
   /// - Returns: The index of the element if it's found, otherwise `nil`.
