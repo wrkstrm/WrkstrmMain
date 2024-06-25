@@ -1,5 +1,16 @@
 // swift-tools-version:5.10
+import Foundation
 import PackageDescription
+
+// MARK: - Foundation extensions
+
+extension ProcessInfo {
+  static var useLocalDeps: Bool {
+    ProcessInfo.processInfo.environment["SPM_USE_LOCAL_DEPS"] == "true"
+  }
+}
+
+// MARK: - PackageDescription extensions
 
 extension SwiftSetting {
   static let profile: SwiftSetting = .unsafeFlags([
@@ -7,6 +18,8 @@ extension SwiftSetting {
     "-warn-long-expression-type-checking=10",
   ])
 }
+
+// MARK: - Package Declaration
 
 let package = Package(
   name: "WrkstrmMain",
@@ -32,5 +45,5 @@ let package = Package(
         "WrkstrmMain",
         .product(name: "Testing", package: "swift-testing"),
       ],
-      swiftSettings: [.profile]),
+      swiftSettings: ProcessInfo.useLocalDeps ? [.profile] : []),
   ])
