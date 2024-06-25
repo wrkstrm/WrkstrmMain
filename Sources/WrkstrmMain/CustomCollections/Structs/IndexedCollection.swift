@@ -3,9 +3,9 @@ import Foundation
 /// A collection wrapper that provides both the index and element of each entry in a
 /// `RandomAccessCollection`.
 ///
-/// `IndexedCollection` is a generic struct that takes any `RandomAccessCollection` and provides access to
-/// both the index and the element of each entry in the collection. This is particularly useful when you need
-/// both the value and the position of each element in the collection.
+/// `IndexedCollection` is a generic struct that takes any `RandomAccessCollection` and provides
+/// access to both the index and the element of each entry in the collection. This is particularly 
+/// useful when you need both the value and the position of each element in the collection.
 ///
 /// Example:
 /// ```
@@ -52,21 +52,22 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   /// - Parameters:
   ///   - i: A valid index of the collection.
   ///   - distance: The distance to offset `i`.
-  /// - Returns: An index offset by `distance` from the index `i`. If `distance` is positive, this is the
-  /// same value that would be returned by the default implementation of `index(_:offsetBy:)`. If `distance`
-  /// is negative, this is the same value that would be returned by the default implementation of
-  /// `index(_:offsetBy:)`.
+  /// - Returns: An index offset by `distance` from the index `i`. If `distance` is positive, this
+  /// is the same value that would be returned by the default implementation of 
+  /// `index(_:offsetBy:)`. If `distance` is negative, this is the same value that would be
+  /// returned by the default implementation of `index(_:offsetBy:)`.
   func index(_ i: Index, offsetBy distance: Int) -> Index {
     base.index(i, offsetBy: distance)
   }
 
   /// Accesses the element at the specified position.
   ///
-  /// This subscript provides access to the element and its index in the collection. The returned tuple
+  /// This subscript provides access to the element and its index in the collection. The returned
+  /// tuple
   /// contains both the index and the element at that index.
   ///
-  /// - Parameter position: The position of the element to access. `position` must be a valid index of the
-  /// collection that is not equal to the `endIndex`.
+  /// - Parameter position: The position of the element to access. `position` must be a valid index
+  /// of the collection that is not equal to the `endIndex`.
   /// - Returns: A tuple containing both the index and the element at position `position`.
   subscript(position: Index) -> Element {
     (index: position, element: base[position])
