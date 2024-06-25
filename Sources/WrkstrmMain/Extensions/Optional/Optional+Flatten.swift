@@ -1,7 +1,7 @@
 /// A protocol representing the ability to flatten values, potentially to `nil`.
 ///
 /// Conforming to `AnyFlattenable` allows for a type to define a way to unwrap or reduce its
-/// value(s) to a simpler form, which might be `nil`. This is useful in scenarios where nested 
+/// value(s) to a simpler form, which might be `nil`. This is useful in scenarios where nested
 /// optional values or complex data structures need to be simplified.
 public protocol AnyFlattenable {
   /// Unwraps and flattens the value to its simplest form, which may be `nil`.

@@ -4,7 +4,7 @@ import Foundation
 /// `RandomAccessCollection`.
 ///
 /// `IndexedCollection` is a generic struct that takes any `RandomAccessCollection` and provides
-/// access to both the index and the element of each entry in the collection. This is particularly 
+/// access to both the index and the element of each entry in the collection. This is particularly
 /// useful when you need both the value and the position of each element in the collection.
 ///
 /// Example:
@@ -53,7 +53,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   ///   - i: A valid index of the collection.
   ///   - distance: The distance to offset `i`.
   /// - Returns: An index offset by `distance` from the index `i`. If `distance` is positive, this
-  /// is the same value that would be returned by the default implementation of 
+  /// is the same value that would be returned by the default implementation of
   /// `index(_:offsetBy:)`. If `distance` is negative, this is the same value that would be
   /// returned by the default implementation of `index(_:offsetBy:)`.
   func index(_ i: Index, offsetBy distance: Int) -> Index {

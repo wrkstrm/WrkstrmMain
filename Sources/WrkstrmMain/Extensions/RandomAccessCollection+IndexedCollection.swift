@@ -5,7 +5,7 @@ extension RandomAccessCollection {
   /// Wraps the collection into an `IndexedCollection`.
   ///
   /// This method provides indexed access to the elements of the collection. `IndexedCollection` is
-  /// a structure that pairs each element of the collection with its index, offering a convenient 
+  /// a structure that pairs each element of the collection with its index, offering a convenient
   /// way to enumerate a collection with index-aware operations.
   ///
   /// - Returns: An `IndexedCollection` instance that wraps the original collection, pairing its
