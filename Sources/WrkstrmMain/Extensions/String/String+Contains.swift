@@ -1,10 +1,11 @@
-/// An extension on `String` providing utility methods for character uniqueness and permutation checking.
+/// An extension on `String` providing utility methods for character uniqueness and permutation
+/// checking.
 extension String {
   /// Checks whether the string contains all unique characters.
   ///
   /// This method iterates through the characters of the string, storing them in a set to check for
-  /// uniqueness. If any character is found more than once, the method returns `false`; otherwise, it returns
-  /// `true`.
+  /// uniqueness. If any character is found more than once, the method returns `false`; otherwise,
+  /// it returns `true`.
   ///
   /// For example, "abc" returns `true`, but "aabb" returns `false`.
   ///
@@ -23,11 +24,12 @@ extension String {
 
   /// Determines if the string is a permutation of another string.
   ///
-  /// This method checks if two strings have the same character count and the same sum of Unicode scalar
-  /// values, which implies that one string is a permutation of the other.
+  /// This method checks if two strings have the same character count and the same sum of Unicode
+  /// scalar values, which implies that one string is a permutation of the other.
   ///
-  /// Note: This method assumes that the strings consist of characters with unique Unicode scalar values.
-  /// For strings with characters having the same scalar values, this method may produce incorrect results.
+  /// Note: This method assumes that the strings consist of characters with unique Unicode scalar
+  /// values.For strings with characters having the same scalar values, this method may produce
+  /// incorrect results.
   ///
   /// For example, "abc" and "cab" are permutations, but "abc" and "def" are not.
   ///
