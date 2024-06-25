@@ -3,7 +3,6 @@ import Testing
 @testable import WrkstrmMain
 
 struct BinaryTreeTests {
-
   var tree: BinaryTree = .init(1)
 
   @Test func basicInsertion() {
@@ -20,7 +19,7 @@ struct BinaryTreeTests {
   @Test func randomTreeCount() {
     let randomTree: BinaryTree = .init(1)
     let randomCount = Int.random(in: 0...10)
-    (0..<randomCount).forEach { _ in
+    for _ in 0..<randomCount {
       randomTree.insert(Int.random(in: 0...10))
     }
     #expect(randomTree.count == (randomCount + 1))
