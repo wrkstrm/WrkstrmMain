@@ -13,22 +13,29 @@ extension ProcessInfo {
 // MARK: - PackageDescription extensions
 
 extension SwiftSetting {
-  static let profile: SwiftSetting = .unsafeFlags([
+  static let localSwiftSettings: SwiftSetting = .unsafeFlags([
     "-Xfrontend",
     "-warn-long-expression-type-checking=10",
   ])
 }
 
-// MARK: - Package Service
+// MARK: - Configuration Service
 
-struct PackageService {
-  static let shared = PackageService()
+struct ConfigurationService {
 
-  var swiftProfile: [SwiftSetting]
+  let swiftSettings: [SwiftSetting]
 
-  init() {
-    swiftProfile = ProcessInfo.useLocalDeps ? [SwiftSetting.profile] : []
-  }
+  private static let local: ConfigurationService = {
+    ConfigurationService(swiftSettings: [.localSwiftSettings])
+  }()
+
+  private static let remote: ConfigurationService = {
+    ConfigurationService(swiftSettings: [])
+  }()
+
+  static let shared: ConfigurationService = {
+    ProcessInfo.useLocalDeps ? .local : .remote
+  }()
 }
 
 // MARK: - Package Declaration
@@ -50,12 +57,14 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-testing.git", from: "0.9.0"),
   ],
   targets: [
-    .target(name: "WrkstrmMain", swiftSettings: PackageService.shared.swiftProfile),
+    .target(
+      name: "WrkstrmMain",
+      swiftSettings: ConfigurationService.shared.swiftSettings),
     .testTarget(
       name: "WrkstrmMainTests",
       dependencies: [
         "WrkstrmMain",
         .product(name: "Testing", package: "swift-testing"),
       ],
-      swiftSettings: PackageService.shared.swiftProfile),
+      swiftSettings: ConfigurationService.shared.swiftSettings),
   ])
