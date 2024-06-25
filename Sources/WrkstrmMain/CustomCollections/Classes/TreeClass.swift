@@ -1,6 +1,7 @@
 /// A generic tree data structure.
 ///
-/// You can create a tree with a specific type of value by providing the type as a generic parameter `T`.
+/// You can create a tree with a specific type of value by providing the type as a generic parameter
+/// `T`.
 public class Tree<T>: CustomDebugStringConvertible {
   /// The value contained in this node.
   public let value: T
