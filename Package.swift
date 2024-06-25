@@ -19,7 +19,7 @@ extension SwiftSetting {
   ])
 }
 
-// MARK: - Service
+// MARK: - Package Service
 
 struct PackageService {
   static let shared = PackageService()
@@ -50,7 +50,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-testing.git", from: "0.9.0"),
   ],
   targets: [
-    .target(name: "WrkstrmMain", swiftSettings: [.profile]),
+    .target(name: "WrkstrmMain", swiftSettings: PackageService.shared.swiftProfile),
     .testTarget(
       name: "WrkstrmMainTests",
       dependencies: [
