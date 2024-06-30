@@ -65,5 +65,4 @@ extension ProcessInfo {
     ProcessInfo.processInfo.environment["SPM_USE_LOCAL_DEPS"] == "true"
   }
 }
-
 // CONFIG_SERVICE_END_V1_HASH:{{
