@@ -32,7 +32,7 @@ let package = Package(
       swiftSettings: ConfigurationService.inject.swiftSettings),
   ])
 
-// CONFIG_SERVICE_START_V1_HASH:30818bafc27eac3aed5d57b5c82418da73a7a516a68462d16019c2007d34819a
+// CONFIG_SERVICE_START_V1_HASH:11db95e66d1d051f39a41c1771338342df0a7cc72f7d2f46d33fa2b1041d7f53
 import Foundation
 
 // MARK: - Configuration Service
@@ -66,4 +66,4 @@ extension ProcessInfo {
   }
 }
 
-// CONFIG_SERVICE_END_V1_HASH:{{
+// CONFIG_SERVICE_END_V1
