@@ -1,6 +1,5 @@
-// PACKAGE_SERVICE_START_V1_HASH:11db95e66d1d051f39a41c1771338342df0a7cc72f7d2f46d33fa2b1041d7f53
-import Foundation
 // swift-tools-version:5.10
+import Foundation
 import PackageDescription
 
 // MARK: - Package Declaration
