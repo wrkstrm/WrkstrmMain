@@ -2,7 +2,7 @@ extension CommandLine {
   /// An array of substrings derived from splitting the first command-line argument by the "/"
   /// separator.
   /// This representation is useful for extracting the executable name and path.
-  static let splitArguments: [String.SubSequence] = arguments[0].split(separator: "/")
+  internal static let splitArguments: [String.SubSequence] = arguments[0].split(separator: "/")
 
   /// Returns the executable name of the current process.
   ///
