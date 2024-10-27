@@ -7,7 +7,7 @@
 /// - If both values are non-nil, their wrapped values are compared.
 /// - A nil value is always considered less than a non-nil value.
 /// - Two nil values are considered equal (not less than each other).
-extension Optional: Comparable where Wrapped: Equatable & Comparable {
+extension Optional: @retroactive Comparable where Wrapped: Equatable & Comparable {
   /// Compares two optional values using the less-than operator.
   ///
   /// The comparison is based on the wrapped values of the optionals. If both optionals are non-nil,
