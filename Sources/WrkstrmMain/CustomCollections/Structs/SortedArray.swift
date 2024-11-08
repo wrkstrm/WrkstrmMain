@@ -4,7 +4,9 @@
 /// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the
 /// specified index to maintain sort order.
 public enum SearchResult<N: Numeric> {
+  /// The item was found at the specified index.
   case found(at: N)
+  /// The item was not found, but can be inserted at the specified index to maintain sort order
   case notFound(insertAt: N)
 }
 
@@ -18,6 +20,31 @@ public struct SortedArray<Element>: Collection {
 
   /// The sorting order function used to maintain the sorted state of the array.
   public let sortOrder: Comparator<Element>
+
+  // MARK: - Collection Protocol Implementation Variables
+
+  /// The start index of the collection.
+  public var startIndex: Int { elements.startIndex }
+
+  /// The end index of the collection.
+  public var endIndex: Int { elements.endIndex }
+
+  /// Accesses the element at the specified position.
+  public subscript(index: Int) -> Element { elements[index] }
+
+  /// Initializes a new sorted array from an unsorted sequence.
+  ///
+  /// The elements are sorted using the provided comparator.
+  /// - Parameters:
+  ///   - unsorted: A sequence of unsorted elements.
+  ///   - sortOrder: A comparator function that defines the sort order.
+  public init<S: Sequence>(
+    unsorted: S,
+    sortOrder: @escaping Comparator<S.Element>
+  ) where S.Element == Element {
+    elements = unsorted.sorted(by: sortOrder)
+    self.sortOrder = sortOrder
+  }
 
   /// Inserts an element into the sorted array.
   ///
@@ -34,20 +61,6 @@ public struct SortedArray<Element>: Collection {
     }
   }
 
-  /// Initializes a new sorted array from an unsorted sequence.
-  ///
-  /// The elements are sorted using the provided comparator.
-  /// - Parameters:
-  ///   - unsorted: A sequence of unsorted elements.
-  ///   - sortOrder: A comparator function that defines the sort order.
-  public init<S: Sequence>(
-    unsorted: S,
-    sortOrder: @escaping Comparator<S.Element>
-  ) where S.Element == Element {
-    elements = unsorted.sorted(by: sortOrder)
-    self.sortOrder = sortOrder
-  }
-
   /// Performs a binary search for a given element in the sorted array.
   ///
   /// Returns a `SearchResult` indicating the position where the element is found or should be
@@ -55,10 +68,10 @@ public struct SortedArray<Element>: Collection {
   /// - Parameter element: The element to search for.
   /// - Returns: The search result as `SearchResult<Int>`.
   public func search(for element: Element) -> SearchResult<Int> {
-    var start = elements.startIndex
-    var end = elements.endIndex
+    var start: Int = elements.startIndex
+    var end: Int = elements.endIndex
     while start < end {
-      let mid = start + (end - start) / 2
+      let mid: Int = start + (end - start) / 2
       if sortOrder(elements[mid], element) {
         start = mid + 1
       } else if sortOrder(element, elements[mid]) {
@@ -70,16 +83,7 @@ public struct SortedArray<Element>: Collection {
     return .notFound(insertAt: start)
   }
 
-  // MARK: - Collection Protocol Implementation
-
-  /// The start index of the collection.
-  public var startIndex: Int { elements.startIndex }
-
-  /// The end index of the collection.
-  public var endIndex: Int { elements.endIndex }
-
-  /// Accesses the element at the specified position.
-  public subscript(index: Int) -> Element { elements[index] }
+  // MARK: - Collection Protocol Implementation Functions
 
   /// Returns the position immediately after the given index.
   public func index(after i: Int) -> Int { elements.index(after: i) }

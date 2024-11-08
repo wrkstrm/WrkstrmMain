@@ -3,6 +3,19 @@
 /// A binary tree is a tree data structure in which each node has at most two children, referred to
 /// as the left and right child.
 public class BinaryTree<Value: Comparable> {
+  /// The order in which to traverse the binary tree when calling `traverse(block:)` method.
+  public enum Order {
+    /// Pre-order traversal: Visit the current node before its children.
+    case pre
+
+    /// In-order traversal: Visit the left child, then the current node, and finally the right
+    /// child.
+    case `in`
+
+    /// Post-order traversal: Visit the children first, and then the current node.
+    case post
+  }
+
   /// The value stored in this binary tree node.
   public private(set) var value: Value
 
@@ -14,17 +27,6 @@ public class BinaryTree<Value: Comparable> {
 
   /// The right child node of this binary tree node.
   public private(set) var right: BinaryTree?
-
-  /// Creates a binary tree node with the given value.
-  /// - Parameter value: The value to be stored in this binary tree node.
-  public init(_ value: Value) {
-    self.value = value
-  }
-
-  private init(_ value: Value, parent: BinaryTree?) {
-    self.value = value
-    self.parent = parent
-  }
 
   /// Returns `true` if this binary tree node is the root node.
   public var isRoot: Bool { parent == nil }
@@ -40,6 +42,17 @@ public class BinaryTree<Value: Comparable> {
 
   /// Returns the total count of nodes in the binary tree rooted at this node.
   public var count: Int { (left?.count ?? 0) + 1 + (right?.count ?? 0) }
+
+  /// Creates a binary tree node with the given value.
+  /// - Parameter value: The value to be stored in this binary tree node.
+  public init(_ value: Value) {
+    self.value = value
+  }
+
+  private init(_ value: Value, parent: BinaryTree?) {
+    self.value = value
+    self.parent = parent
+  }
 
   /// Inserts a new value into the binary tree while maintaining the binary search tree property.
   /// - Parameter value: The value to insert into the binary tree.
@@ -60,19 +73,6 @@ public class BinaryTree<Value: Comparable> {
       left = BinaryTree(value, parent: self)
     }
     return left!
-  }
-
-  /// The order in which to traverse the binary tree when calling `traverse(block:)` method.
-  public enum Order {
-    /// Pre-order traversal: Visit the current node before its children.
-    case pre
-
-    /// In-order traversal: Visit the left child, then the current node, and finally the right
-    /// child.
-    case `in`
-
-    /// Post-order traversal: Visit the children first, and then the current node.
-    case post
   }
 
   /// Traverses the binary tree in the specified order and performs a given action on each node.

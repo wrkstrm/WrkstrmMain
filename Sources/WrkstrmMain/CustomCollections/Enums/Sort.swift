@@ -5,6 +5,7 @@ public struct Sort<Type> {
   /// A sort comparator function signature alias.
   public typealias Comparator = (Type, Type) -> Bool
 
+  /// A property signature alias.
   public typealias Property<P: Comparable> = (Type) -> P
 
   // MARK: - Initializers
@@ -17,16 +18,6 @@ public struct Sort<Type> {
   /// Convinience initializer for an descending sort struct. (...3, 2, 1)
   public static func descending(_ descending: @escaping Property<some Comparable>) -> Sort<Type> {
     Self(descending: descending)
-  }
-
-  let comparator: Comparator
-
-  public init(ascending: @escaping Property<some Comparable>) {
-    comparator = { ascending($0) < ascending($1) }
-  }
-
-  public init(descending: @escaping Property<some Comparable>) {
-    comparator = { descending($0) > descending($1) }
   }
 
   // MARK: - Comparator Generators
@@ -80,5 +71,17 @@ public struct Sort<Type> {
       }
       return false
     }
+  }
+
+  let comparator: Comparator
+
+  /// A convinience initializer for an ascending sort struct.
+  public init(ascending: @escaping Property<some Comparable>) {
+    comparator = { ascending($0) < ascending($1) }
+  }
+
+  /// A convinience initializer for a descending sort struct.
+  public init(descending: @escaping Property<some Comparable>) {
+    comparator = { descending($0) > descending($1) }
   }
 }

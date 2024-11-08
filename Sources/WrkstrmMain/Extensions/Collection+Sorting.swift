@@ -56,7 +56,7 @@ extension Collection where Element: Comparable, Index == Int {
   ///   - right: The right subarray.
   /// - Returns: A new sorted array combining elements from the left and right subarrays.
   private func merge<T: Comparable>(left: [T], right: [T]) -> [T] {
-    var mergedArray = ArraySlice<T>()
+    var mergedArray: ArraySlice<T> = .init()
 
     var left: ArraySlice = .init(left)
     var right: ArraySlice = .init(right)

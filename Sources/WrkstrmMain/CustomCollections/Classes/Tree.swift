@@ -12,12 +12,8 @@ public class Tree<T>: CustomDebugStringConvertible {
   /// A weak reference to the parent node of this tree node.
   public weak var parent: Tree?
 
-  /// Adds a child node to this tree node.
-  /// - Parameter child: The child tree node to add.
-  public func add(_ child: Tree) {
-    children.append(child)
-    child.parent = self
-  }
+  /// A textual representation of this tree node, which is based on the value it contains.
+  public var debugDescription: String { String(describing: value) }
 
   /// Initializes a new tree node with the given value.
   /// - Parameter value: The value to be stored in this tree node.
@@ -25,6 +21,10 @@ public class Tree<T>: CustomDebugStringConvertible {
     self.value = value
   }
 
-  /// A textual representation of this tree node, which is based on the value it contains.
-  public var debugDescription: String { String(describing: value) }
+  /// Adds a child node to this tree node.
+  /// - Parameter child: The child tree node to add.
+  public func add(_ child: Tree) {
+    children.append(child)
+    child.parent = self
+  }
 }

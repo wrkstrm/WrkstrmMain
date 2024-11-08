@@ -1,5 +1,3 @@
-import Foundation
-
 /// An extension on `Array` providing additional functionalities for elements that conform to
 /// `Equatable`.
 extension Array where Element: Equatable {

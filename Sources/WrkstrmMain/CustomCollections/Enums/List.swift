@@ -1,19 +1,19 @@
 /// Represents a recursive list data structure with elements of type `A`.
 /// - Note: This enum is designed to work with singly-linked and doubly-linked lists.
 /// - Parameter A: The type of elements in the list, which must conform to `Equatable`.
-public indirect enum List<A: Equatable> {
-  /// Represents a single element in the list.
-  /// - Parameters:
-  ///   - element: The value of the current element.
-  ///   - next: The optional reference to the next element in the list.
-  case single(A, next: List<A>?)
-
+public indirect enum List<A: Equatable>: Sequence, Equatable {
   /// Represents a double element in the list, which has both a previous and a next element.
   /// - Parameters:
   ///   - previous: The optional reference to the previous element.
   ///   - current: The value of the current element.
   ///   - next: The optional reference to the next element.
   case double(previous: List<A>?, current: A, next: List<A>?)
+
+  /// Represents a single element in the list.
+  /// - Parameters:
+  ///   - element: The value of the current element.
+  ///   - next: The optional reference to the next element in the list.
+  case single(A, next: List<A>?)
 
   /// An iterator for traversing the elements of the list.
   public struct Iterator: IteratorProtocol {
@@ -36,15 +36,9 @@ public indirect enum List<A: Equatable> {
       return nil
     }
   }
-}
 
-extension List: Sequence {
-  /// Creates an iterator for traversing the elements of the list.
-  /// - Returns: An iterator that starts at the beginning of the list.
-  public func makeIterator() -> Iterator { Iterator(list: self) }
-}
+  // MARK: - Equatable
 
-extension List: Equatable {
   /// Compares two lists for equality.
   /// - Parameters:
   ///   - lhs: The left-hand side list to compare.
@@ -71,4 +65,10 @@ extension List: Equatable {
         }
     }
   }
+
+  // MARK: - Sequence
+
+  /// Creates an iterator for traversing the elements of the list.
+  /// - Returns: An iterator that starts at the beginning of the list.
+  public func makeIterator() -> Iterator { Iterator(list: self) }
 }
