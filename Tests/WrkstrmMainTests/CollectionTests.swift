@@ -1,20 +1,19 @@
-import XCTest
-
+import Testing
 @testable import WrkstrmMain
 
-final class CollectionTests: XCTestCase {
-  static var allTests = [("testSearchWithIncreasingElements", testSearchWithIncreasingElements)]
-
+struct CollectionTests {
   let increasingElements = [1, 3, 5]
 
   let randomElements = [5, 4, 1, 6, 0, -10]
 
-  func testSearchWithIncreasingElements() {
-    XCTAssertTrue(increasingElements.search(key: 3) == 1)
+  @Test
+  func tearchWithIncreasingElements() {
+    #expect(increasingElements.search(key: 3) == 1)
   }
 
-  func testBasicSearch() {
+  @Test
+  func basicSearch() {
     let sorted = randomElements.mergeSort()
-    XCTAssertTrue(sorted == [-10, 0, 1, 4, 5, 6])
+    #expect(sorted == [-10, 0, 1, 4, 5, 6])
   }
 }
