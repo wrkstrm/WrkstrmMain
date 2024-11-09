@@ -1,4 +1,4 @@
-// swift-tools-version:6
+// swift-tools-version:6.0
 import Foundation
 import PackageDescription
 
@@ -45,10 +45,11 @@ extension Package {
     public var swiftSettings: [SwiftSetting] = []
     var dependencies: [PackageDescription.Package.Dependency] = []
 
-    public static let inject: Package.Service = ProcessInfo.useLocalDeps ? .local : .remote
+    @MainActor public static let inject: Package.Service = ProcessInfo.useLocalDeps ? .local : .remote
 
-    static var local: Package.Service = .init(swiftSettings: [.localSwiftSettings])
-    static var remote: Package.Service = .init()
+    @MainActor static var local: Package.Service = .init(swiftSettings: [.localSwiftSettings])
+
+    @MainActor static var remote: Package.Service = .init()
   }
 }
 
