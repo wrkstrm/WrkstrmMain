@@ -45,7 +45,8 @@ extension Package {
     public var swiftSettings: [SwiftSetting] = []
     var dependencies: [PackageDescription.Package.Dependency] = []
 
-    @MainActor public static let inject: Package.Service = ProcessInfo.useLocalDeps ? .local : .remote
+    @MainActor public static let inject: Package.Service =
+      ProcessInfo.useLocalDeps ? .local : .remote
 
     @MainActor static var local: Package.Service = .init(swiftSettings: [.localSwiftSettings])
 
