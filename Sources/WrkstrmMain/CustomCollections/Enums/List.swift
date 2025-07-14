@@ -23,11 +23,11 @@ public indirect enum List<A: Equatable>: Sequence, Equatable {
     /// - Returns: The next element in the list, or `nil` if there are no more elements.
     public mutating func next() -> List<A>? {
       switch list {
-        case let .single(_, next):
+        case .single(_, let next):
           list = next
           return next
 
-        case let .double(previous: _, current: _, next: next):
+        case .double(previous: _, current: _, let next):
           list = next
 
         default:
@@ -46,18 +46,18 @@ public indirect enum List<A: Equatable>: Sequence, Equatable {
   /// - Returns: `true` if the two lists are equal, `false` otherwise.
   public static func == (lhs: List<A>, rhs: List<A>) -> Bool {
     switch lhs {
-      case let .single(lhsElement, lhsNext):
+      case .single(let lhsElement, let lhsNext):
         switch rhs {
-          case let .single(rhsElement, rhsNext):
+          case .single(let rhsElement, let rhsNext):
             lhsElement == rhsElement && lhsNext == rhsNext
 
           default:
             false
         }
 
-      case let .double(previous: lhsPrevious, current: lhsCurrent, next: lhsNext):
+      case .double(previous: let lhsPrevious, current: let lhsCurrent, next: let lhsNext):
         switch rhs {
-          case let .double(previous: rhsPrevious, current: rhsCurrent, next: rhsNext):
+          case .double(previous: let rhsPrevious, current: let rhsCurrent, next: let rhsNext):
             lhsPrevious == rhsPrevious && lhsCurrent == rhsCurrent && lhsNext == rhsNext
 
           default:

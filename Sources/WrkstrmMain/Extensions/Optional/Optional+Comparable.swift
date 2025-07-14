@@ -20,7 +20,7 @@ extension Optional: @retroactive Comparable where Wrapped: Equatable & Comparabl
   /// - Returns: `true` if the value of `lhs` is less than the value of `rhs`; otherwise, `false`.
   public static func < (lhs: Wrapped?, rhs: Wrapped?) -> Bool {
     switch (lhs, rhs) {
-      case let (l?, r?):
+      case (let l?, let r?):
         l < r
 
       case (nil, _?):

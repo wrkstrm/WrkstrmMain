@@ -53,10 +53,10 @@ public struct SortedArray<Element>: Collection {
   /// - Parameter element: The element to insert.
   public mutating func insert(_ element: Element) {
     switch search(for: element) {
-      case let .found(at: index):
+      case .found(at: let index):
         elements.insert(element, at: index)
 
-      case let .notFound(insertAt: index):
+      case .notFound(insertAt: let index):
         elements.insert(element, at: index)
     }
   }
