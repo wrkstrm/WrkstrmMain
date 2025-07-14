@@ -1,5 +1,3 @@
-// swift-version:5.9
-
 import Foundation
 
 /// An extension on `Array` where elements are of type `String`.
