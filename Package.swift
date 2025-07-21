@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.1
 import Foundation
 import PackageDescription
 
@@ -23,7 +23,7 @@ let package = Package(
   targets: [
     .target(
       name: "WrkstrmMain",
-      swiftSettings: Package.Service.inject.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings
     ),
     .testTarget(
       name: "WrkstrmMainTests",
@@ -31,12 +31,17 @@ let package = Package(
         "WrkstrmMain",
         .product(name: "Testing", package: "swift-testing"),
       ],
-      swiftSettings: Package.Service.inject.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings
     ),
   ]
 )
 
 // MARK: - Package Service
+
+print("---- Package Inject Deps: Begin ----")
+print("Use Local Deps? \(ProcessInfo.useLocalDeps)")
+print(Package.Inject.shared.dependencies.map(\.kind))
+print("---- Package Inject Deps: End ----")
 
 extension Package {
   @MainActor
