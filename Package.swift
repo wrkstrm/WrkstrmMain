@@ -39,18 +39,17 @@ let package = Package(
 // MARK: - Package Service
 
 extension Package {
-  public struct Service {
+  @MainActor
+  public struct Inject {
     public static let version = "0.0.1"
 
     public var swiftSettings: [SwiftSetting] = []
     var dependencies: [PackageDescription.Package.Dependency] = []
 
-    @MainActor public static let inject: Package.Service =
-      ProcessInfo.useLocalDeps ? .local : .remote
+    public static let shared: Inject = ProcessInfo.useLocalDeps ? .local : .remote
 
-    @MainActor static var local: Package.Service = .init(swiftSettings: [.localSwiftSettings])
-
-    @MainActor static var remote: Package.Service = .init()
+    static var local: Inject = .init(swiftSettings: [.localSwiftSettings])
+    static var remote: Inject = .init()
   }
 }
 
@@ -71,4 +70,4 @@ extension ProcessInfo {
   }
 }
 
-// PACKAGE_SERVICE_END_V1
+// PACKAGE_SERVICE_END_V0_0_1
