@@ -17,9 +17,6 @@ let package = Package(
   products: [
     .library(name: "WrkstrmMain", targets: ["WrkstrmMain"])
   ],
-  dependencies: [
-    .package(url: "https://github.com/apple/swift-testing.git", from: "0.10.0")
-  ],
   targets: [
     .target(
       name: "WrkstrmMain",
@@ -28,8 +25,7 @@ let package = Package(
     .testTarget(
       name: "WrkstrmMainTests",
       dependencies: [
-        "WrkstrmMain",
-        .product(name: "Testing", package: "swift-testing"),
+        .product(name: "WrkstrmMain", package: "WrkstrmMain"),
       ],
       swiftSettings: Package.Inject.shared.swiftSettings
     ),
