@@ -24,9 +24,7 @@ let package = Package(
     ),
     .testTarget(
       name: "WrkstrmMainTests",
-      dependencies: [
-        .product(name: "WrkstrmMain", package: "WrkstrmMain"),
-      ],
+      dependencies: ["WrkstrmMain"],
       swiftSettings: Package.Inject.shared.swiftSettings
     ),
   ]
