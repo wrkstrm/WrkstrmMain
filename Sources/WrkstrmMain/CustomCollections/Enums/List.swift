@@ -23,15 +23,15 @@ public indirect enum List<A: Equatable>: Sequence, Equatable {
     /// - Returns: The next element in the list, or `nil` if there are no more elements.
     public mutating func next() -> List<A>? {
       switch list {
-        case .single(_, let next):
-          list = next
-          return next
+      case .single(_, let next):
+        list = next
+        return next
 
-        case .double(previous: _, current: _, let next):
-          list = next
+      case .double(previous: _, current: _, let next):
+        list = next
 
-        default:
-          return nil
+      default:
+        return nil
       }
       return nil
     }
@@ -46,23 +46,23 @@ public indirect enum List<A: Equatable>: Sequence, Equatable {
   /// - Returns: `true` if the two lists are equal, `false` otherwise.
   public static func == (lhs: List<A>, rhs: List<A>) -> Bool {
     switch lhs {
-      case .single(let lhsElement, let lhsNext):
-        switch rhs {
-          case .single(let rhsElement, let rhsNext):
-            lhsElement == rhsElement && lhsNext == rhsNext
+    case .single(let lhsElement, let lhsNext):
+      switch rhs {
+      case .single(let rhsElement, let rhsNext):
+        lhsElement == rhsElement && lhsNext == rhsNext
 
-          default:
-            false
-        }
+      default:
+        false
+      }
 
-      case .double(previous: let lhsPrevious, current: let lhsCurrent, next: let lhsNext):
-        switch rhs {
-          case .double(previous: let rhsPrevious, current: let rhsCurrent, next: let rhsNext):
-            lhsPrevious == rhsPrevious && lhsCurrent == rhsCurrent && lhsNext == rhsNext
+    case .double(previous: let lhsPrevious, current: let lhsCurrent, next: let lhsNext):
+      switch rhs {
+      case .double(previous: let rhsPrevious, current: let rhsCurrent, next: let rhsNext):
+        lhsPrevious == rhsPrevious && lhsCurrent == rhsCurrent && lhsNext == rhsNext
 
-          default:
-            false
-        }
+      default:
+        false
+      }
     }
   }
 
