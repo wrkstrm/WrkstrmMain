@@ -1,21 +1,19 @@
-import XCTest
+import Testing
 
-class StringKebabTests: XCTestCase {
-  static var allTests = [
-    ("testSimpleCamelCaseToKebabCase", testSimpleCamelCaseToKebabCase),
-    ("testAllUppercaseCamelCaseToKebabCase", testAllUppercaseCamelCaseToKebabCase),
-    ("testAlreadyKebabCase", testAlreadyKebabCase),
-  ]
+struct StringKebabTests {
 
+  @Test
   func testSimpleCamelCaseToKebabCase() {
-    XCTAssertEqual("helloWorld".camelCaseToKebabCase(), "hello-world")
+    #expect("helloWorld".camelCaseToKebabCase() == "hello-world")
   }
 
+  @Test
   func testAllUppercaseCamelCaseToKebabCase() {
-    XCTAssertEqual("HELLOWORLD".camelCaseToKebabCase(), "h-e-l-l-o-w-o-r-l-d")
+    #expect("HELLOWORLD".camelCaseToKebabCase() == "h-e-l-l-o-w-o-r-l-d")
   }
 
+  @Test
   func testAlreadyKebabCase() {
-    XCTAssertEqual("kebab-case-example".camelCaseToKebabCase(), "kebab-case-example")
+    #expect("kebab-case-example".camelCaseToKebabCase() == "kebab-case-example")
   }
 }

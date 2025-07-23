@@ -1,9 +1,8 @@
-import XCTest
+import Testing
 
 @testable import WrkstrmMain
 
-final class OptionalComparableTests: XCTestCase {
-  static var allTests = [("testSearchWithIncreasingElements", testNilLessThanNil)]
+struct OptionalComparableTests {
 
   let none: Int? = .none
 
@@ -11,27 +10,33 @@ final class OptionalComparableTests: XCTestCase {
 
   let two: Int? = 2
 
+  @Test
   func testOneLessThanTwo() {
-    XCTAssertTrue(one < two, "Nil is Less than one")
+    #expect(one < two)
   }
 
+  @Test
   func testNilLessThanOne() {
-    XCTAssertTrue(none < one, "Nil is Less than one")
+    #expect(none < one)
   }
 
+  @Test
   func testOneMoreThanTwoFails() {
-    XCTAssertFalse(one > two, "One is more than nil.")
+    #expect(!(one > two))
   }
 
+  @Test
   func testNilMoreThanOneFails() {
-    XCTAssertFalse(none > one, "One is more than nil.")
+    #expect(!(none > one))
   }
 
+  @Test
   func testNilLessThanNil() {
-    XCTAssertFalse(none < none, "Nil compared to Nil is always false")
+    #expect(!(none < none))
   }
 
+  @Test
   func testNiGreaterThanNil() {
-    XCTAssertFalse(none > none, "Nil compared to Nil is always false")
+    #expect(!(none > none))
   }
 }
