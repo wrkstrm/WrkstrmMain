@@ -28,14 +28,14 @@ extension Optional: AnyFlattenable {
   /// optional, or `nil`.
   public func flattened() -> Any? {
     switch self {
-      case let .some(x as AnyFlattenable):
-        x.flattened()
+    case .some(let x as AnyFlattenable):
+      x.flattened()
 
-      case let .some(x):
-        x
+    case .some(let x):
+      x
 
-      case .none:
-        nil
+    case .none:
+      nil
     }
   }
 }

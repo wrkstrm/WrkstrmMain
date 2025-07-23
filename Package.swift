@@ -20,14 +20,14 @@ let package = Package(
   targets: [
     .target(
       name: "WrkstrmMain",
-      swiftSettings: Package.Inject.shared.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings,
     ),
     .testTarget(
       name: "WrkstrmMainTests",
       dependencies: ["WrkstrmMain"],
-      swiftSettings: Package.Inject.shared.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings,
     ),
-  ]
+  ],
 )
 
 // MARK: - Package Service

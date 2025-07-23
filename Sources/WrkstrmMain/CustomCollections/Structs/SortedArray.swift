@@ -40,7 +40,7 @@ public struct SortedArray<Element>: Collection {
   ///   - sortOrder: A comparator function that defines the sort order.
   public init<S: Sequence>(
     unsorted: S,
-    sortOrder: @escaping Comparator<S.Element>
+    sortOrder: @escaping Comparator<S.Element>,
   ) where S.Element == Element {
     elements = unsorted.sorted(by: sortOrder)
     self.sortOrder = sortOrder
@@ -53,11 +53,11 @@ public struct SortedArray<Element>: Collection {
   /// - Parameter element: The element to insert.
   public mutating func insert(_ element: Element) {
     switch search(for: element) {
-      case .found(at: let index):
-        elements.insert(element, at: index)
+    case .found(at: let index):
+      elements.insert(element, at: index)
 
-      case .notFound(insertAt: let index):
-        elements.insert(element, at: index)
+    case .notFound(insertAt: let index):
+      elements.insert(element, at: index)
     }
   }
 
