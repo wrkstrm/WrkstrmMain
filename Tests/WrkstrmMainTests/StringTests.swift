@@ -1,33 +1,31 @@
-import XCTest
+import Testing
 
 @testable import WrkstrmMain
 
-final class StringTests: XCTestCase {
-  static var allTests = [
-    ("testUnique", testUnique),
-    ("testRepeating", testRepeating),
-    ("testEasyPermutation", testEasyPermutation),
-    ("testHarderPermutation", testHarderPermutation),
-    ("testIsPermutation", testIsPermutation),
-  ]
+struct StringTests {
 
+  @Test
   func testUnique() {
-    XCTAssert("ab".containsUniqueChars(), "Expected unique characters to be true.")
+    #expect("ab".containsUniqueChars())
   }
 
+  @Test
   func testRepeating() {
-    XCTAssert(!"aa".containsUniqueChars(), "Expected repeating characters to be false.")
+    #expect(!"aa".containsUniqueChars())
   }
 
+  @Test
   func testEasyPermutation() {
-    XCTAssert(!"aa".isPermutation("aaa"), "Expected repeating characters to be false.")
+    #expect(!"aa".isPermutation("aaa"))
   }
 
+  @Test
   func testHarderPermutation() {
-    XCTAssert(!"ab".isPermutation("aa"), "Expected repeating characters to be false.")
+    #expect(!"ab".isPermutation("aa"))
   }
 
+  @Test
   func testIsPermutation() {
-    XCTAssert("aa".isPermutation("aa"), "Expected repeating characters to be false.")
+    #expect("aa".isPermutation("aa"))
   }
 }

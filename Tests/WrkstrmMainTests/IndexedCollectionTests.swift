@@ -1,10 +1,10 @@
-import XCTest
+import Testing
 
 @testable import WrkstrmMain
 
-final class IndexedCollectionTests: XCTestCase {
-  static var allTests = [("testIndexedCollection", testIndexedCollection)]
+struct IndexedCollectionTests {
 
+  @Test
   func testIndexedCollection() {
     // Prepare a sample array and its indexed collection
     let sampleArray = ["a", "b", "c"]
@@ -15,8 +15,8 @@ final class IndexedCollectionTests: XCTestCase {
 
     // Test if indexedCollection contains the correct tuples of index and element
     for (index, element) in indexedCollection {
-      XCTAssertEqual(index, expectedResults[index].0, "Index should match expected index.")
-      XCTAssertEqual(element, expectedResults[index].1, "Element should match expected element.")
+      #expect(index == expectedResults[index].0)
+      #expect(element == expectedResults[index].1)
     }
   }
 }
