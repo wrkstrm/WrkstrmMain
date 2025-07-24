@@ -1,5 +1,5 @@
 extension String {
-  func count(of occurrence: String) -> Int {
+  public func count(of occurrence: String) -> Int {
     var indices: [Int] = []
     var position = startIndex
     while let range = range(of: occurrence, range: position..<endIndex) {
