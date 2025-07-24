@@ -1,17 +1,17 @@
-/// An enum representing the result of a search in a sorted array.
-///
-/// - found(at: N): Indicates that the item was found at a specific index.
-/// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the
-/// specified index to maintain sort order.
-public enum SearchResult<N: Numeric> {
-  /// The item was found at the specified index.
-  case found(at: N)
-  /// The item was not found, but can be inserted at the specified index to maintain sort order
-  case notFound(insertAt: N)
-}
-
 /// A generic collection that maintains its elements in sorted order.
 public struct SortedArray<Element>: Collection {
+  /// An enum representing the result of a search in a sorted array.
+  ///
+  /// - found(at: N): Indicates that the item was found at a specific index.
+  /// - notFound(insertAt: N): Indicates that the item was not found, but can be inserted at the
+  /// specified index to maintain sort order.
+  public enum SearchResult<N: Numeric> {
+    /// The item was found at the specified index.
+    case found(at: N)
+    /// The item was not found, but can be inserted at the specified index to maintain sort order
+    case notFound(insertAt: N)
+  }
+  
   /// A type alias for a comparator function used to define the sort order of the elements.
   public typealias Comparator<A> = (A, A) -> Bool
 
