@@ -45,4 +45,34 @@ extension KeyedDecodingContainer {
         "Expected null, single object, or array for key \(key.stringValue)"
     )
   }
+  
+  public func decodeAllowingNullOrEmptyObject<T>(
+    _ type: T.Type = T.self,
+    forKey key: Key
+  ) throws -> T? where T: Decodable {
+    if try decodeNil(forKey: key) {
+      return nil
+    }
+    // If object, check if it's empty {}
+    if let nested = try? nestedContainer(
+      keyedBy: AnyCodingKey.self,
+      forKey: key
+    ),
+      nested.allKeys.isEmpty
+    {
+      return nil
+    }
+
+    // Try single value container (a single object)
+    if let single = try? decodeIfPresent(T.self, forKey: key) {
+      return single
+    }
+
+    throw DecodingError.dataCorruptedError(
+      forKey: key,
+      in: self,
+      debugDescription:
+        "Expected null, single object, or type (\(T.self)) for key \(key.stringValue)"
+    )
+  }
 }
