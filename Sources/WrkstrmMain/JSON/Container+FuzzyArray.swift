@@ -11,33 +11,21 @@ extension KeyedDecodingContainer {
     _ type: T.Type = T.self,
     forKey key: Key
   ) throws -> [T]? where T: Decodable {
-    if try decodeNil(forKey: key) {
-      return nil
-    }
-    // If object, check if it's empty {}
-    if let nested = try? nestedContainer(
-      keyedBy: AnyCodingKey.self,
-      forKey: key
-    ),
-      nested.allKeys.isEmpty
-    {
-      return nil
+    // Try decoding as array
+    if let array = try? decode([T].self, forKey: key) {
+      return array
     }
 
-    // Try unkeyed container (an actual array)
-    if var unkeyed = try? nestedUnkeyedContainer(forKey: key) {
-      var result: [T] = []
-      while !unkeyed.isAtEnd {
-        result.append(try unkeyed.decode(T.self))
-      }
-      return result
-    }
-
-    // Try single value container (a single object)
+    // Try decoding as single value
     if let single = try? decode(T.self, forKey: key) {
       return [single]
     }
-
+    
+    // Return nil for `null`
+    if try decodeNil(forKey: key) {
+      return nil
+    }
+    
     throw DecodingError.dataCorruptedError(
       forKey: key,
       in: self,
@@ -53,6 +41,12 @@ extension KeyedDecodingContainer {
     if try decodeNil(forKey: key) {
       return nil
     }
+    
+    // Try single value container (a single object)
+    if let single = try? decodeIfPresent(T.self, forKey: key) {
+      return single
+    }
+    
     // If object, check if it's empty {}
     if let nested = try? nestedContainer(
       keyedBy: AnyCodingKey.self,
@@ -61,11 +55,6 @@ extension KeyedDecodingContainer {
       nested.allKeys.isEmpty
     {
       return nil
-    }
-
-    // Try single value container (a single object)
-    if let single = try? decodeIfPresent(T.self, forKey: key) {
-      return single
     }
 
     throw DecodingError.dataCorruptedError(
