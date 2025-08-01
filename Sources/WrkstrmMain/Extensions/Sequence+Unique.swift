@@ -9,6 +9,13 @@ extension Sequence where Iterator.Element: Hashable {
   ///
   /// - Returns: An array containing the unique elements of the sequence.
   func unique() -> [Iterator.Element] {
-    Array(reduce(into: Set<Iterator.Element>()) { $0.insert($1) })
+    var seen = Set<Iterator.Element>()
+    var result: [Iterator.Element] = []
+    for element in self {
+      if seen.insert(element).inserted {
+        result.append(element)
+      }
+    }
+    return result
   }
 }
