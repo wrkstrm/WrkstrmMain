@@ -8,7 +8,7 @@ struct CollectionTests {
   let randomElements = [5, 4, 1, 6, 0, -10]
 
   @Test
-  func tearchWithIncreasingElements() {
+  func searchWithIncreasingElements() {
     #expect(increasingElements.search(key: 3) == 1)
   }
 
