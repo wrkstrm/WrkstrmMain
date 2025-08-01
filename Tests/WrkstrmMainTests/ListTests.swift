@@ -22,7 +22,7 @@ struct ListTests {
   }
 
   @Test
-  func testBasticSingleLinkedLoop() {
+  func testBasicSingleLinkedLoop() {
     let three = List.single(3, next: two)
     let four = List.single(4, next: three)
     let five = List.single(5, next: four)
