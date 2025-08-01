@@ -19,4 +19,20 @@ struct IndexedCollectionTests {
       #expect(element == expectedResults[index].1)
     }
   }
+
+  @Test
+  func testIterationReachesLastElement() {
+    let array = [1, 2, 3]
+    let collection = IndexedCollection(base: array)
+
+    var lastIndex: Int?
+    var lastElement: Int?
+    for (index, element) in collection {
+      lastIndex = index
+      lastElement = element
+    }
+
+    #expect(lastIndex == array.index(before: array.endIndex))
+    #expect(lastElement == array.last)
+  }
 }
