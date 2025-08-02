@@ -29,7 +29,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   var startIndex: Index { base.startIndex }
 
   /// The end index of the collection.
-  var endIndex: Index { base.startIndex }
+  var endIndex: Index { base.endIndex }
 
   /// Returns the index immediately after the given index.
   ///
