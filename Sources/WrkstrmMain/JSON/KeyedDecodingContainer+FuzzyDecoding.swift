@@ -16,7 +16,7 @@ extension KeyedDecodingContainer {
         forKey: key,
         in: self,
         debugDescription:
-          "Key not found in container. Key: \(key.stringValue) Type: (\(T.self))"
+          "Key: \(key.stringValue) Type: (\(T.self)): Key not found in container."
       )
     }
     if try decodeNil(forKey: key) {
@@ -27,10 +27,16 @@ extension KeyedDecodingContainer {
       return try decode([T].self, forKey: key)
     } catch {
       // Try decoding as single value
-      if let single = try? decodeAllowingNullOrEmptyObject(T.self, forKey: key) {
+      if let single = try? decodeAllowingNullOrEmptyObject(T.self, forKey: key)
+      {
         return [single]
       }
-      throw "Could not decode."
+      throw DecodingError.dataCorruptedError(
+        forKey: key,
+        in: self,
+        debugDescription:
+          "Key: \(key.stringValue) Type: (\(T.self)): Could not decode as: null, array or single type"
+      )
     }
   }
 
@@ -47,8 +53,8 @@ extension KeyedDecodingContainer {
     if try decodeNil(forKey: key) {
       return nil
     }
-    
-    if let _ = try? decode(JSON.EmptyCodableStruct.self, forKey: key) {
+
+    if (try? decode(JSON.EmptyCodableStruct.self, forKey: key)) != nil {
       return nil
     }
 
