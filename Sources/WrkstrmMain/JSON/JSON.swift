@@ -22,4 +22,10 @@ public enum JSON {
   /// As standard Swift `Any` type doesn't conform to `Equatable`, this struct wraps any value and
   /// provides equatability.
   public struct AnyEquatableStruct: Any, Equatable {}
+  
+  /// An empty struct conforming to `Codable`.
+  ///
+  /// This struct can be used as a placeholder or marker type where a `Codable` type is required
+  /// but no data needs to be encoded or decoded.
+  struct EmptyCodableStruct: Codable {}
 }
