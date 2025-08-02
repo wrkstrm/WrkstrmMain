@@ -16,7 +16,7 @@
 /// ```
 ///
 /// See also StackOverflow guidance on detecting empty JSON objects via keyed decoding:
-/// :contentReference[oaicite:1]{index=1}
+/// https://stackoverflow.com/questions/48943510/swift-codable-decode-empty-json-as-nil-or-empty-object
 public struct AnyCodingKey: CodingKey {
   /// The dynamic string value of the key in JSON.
   public var stringValue: String
