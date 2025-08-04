@@ -11,7 +11,7 @@ public struct SortedArray<Element>: Collection {
     /// The item was not found, but can be inserted at the specified index to maintain sort order
     case notFound(insertAt: N)
   }
-  
+
   /// A type alias for a comparator function used to define the sort order of the elements.
   public typealias Comparator<A> = (A, A) -> Bool
 

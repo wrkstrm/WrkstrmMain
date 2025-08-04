@@ -27,8 +27,7 @@ extension KeyedDecodingContainer {
       return try decode([T].self, forKey: key)
     } catch {
       // Try decoding as single value
-      if let single = try? decodeAllowingNullOrEmptyObject(T.self, forKey: key)
-      {
+      if let single = try? decodeAllowingNullOrEmptyObject(T.self, forKey: key) {
         return [single]
       }
       throw DecodingError.dataCorruptedError(

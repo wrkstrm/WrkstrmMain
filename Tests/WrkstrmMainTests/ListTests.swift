@@ -8,7 +8,6 @@ struct ListTests {
 
   var two: List<Int> { List.single(2, next: one) }
 
-
   @Test
   func testBasicEquality() {
     let first = List.single(1, next: nil)
