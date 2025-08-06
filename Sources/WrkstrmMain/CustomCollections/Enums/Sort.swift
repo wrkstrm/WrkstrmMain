@@ -1,4 +1,4 @@
-/// A generic struct that aides in sorting.
+/// A generic struct that aids in sorting.
 public struct Sort<Type> {
   // MARK: - Typealias
 
@@ -10,19 +10,19 @@ public struct Sort<Type> {
 
   // MARK: - Initializers
 
-  /// Convinience initializer for an ascending sort struct. (A, B, C...)
+  /// A convenience initializer for an ascending sort struct. (A, B, C...)
   public static func ascending(_ ascending: @escaping Property<some Comparable>) -> Sort<Type> {
     Self(ascending: ascending)
   }
 
-  /// Convinience initializer for an descending sort struct. (...3, 2, 1)
+  /// A convenience initializer for a descending sort struct. (...3, 2, 1)
   public static func descending(_ descending: @escaping Property<some Comparable>) -> Sort<Type> {
     Self(descending: descending)
   }
 
   // MARK: - Comparator Generators
 
-  /// A convinience comparator creator given a comparable property.
+  /// A convenience comparator creator given a comparable property.
   public static func by(
     ascending: Bool = true,
     _ property: @escaping Property<some Comparable>,
@@ -35,7 +35,7 @@ public struct Sort<Type> {
     return { property($0) < property($1) }
   }
 
-  /// A convinience comparator combinator given an array of simple comparators.
+  /// A convenience comparator combinator given an array of simple comparators.
   @_specialize(where Type:_NativeClass)
   public static func by(_ comparators: [Comparator]) -> Comparator {
     {
@@ -75,12 +75,12 @@ public struct Sort<Type> {
 
   let comparator: Comparator
 
-  /// A convinience initializer for an ascending sort struct.
+  /// A convenience initializer for an ascending sort struct.
   public init(ascending: @escaping Property<some Comparable>) {
     comparator = { ascending($0) < ascending($1) }
   }
 
-  /// A convinience initializer for a descending sort struct.
+  /// A convenience initializer for a descending sort struct.
   public init(descending: @escaping Property<some Comparable>) {
     comparator = { descending($0) > descending($1) }
   }
