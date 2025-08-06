@@ -57,7 +57,7 @@ extension KeyedDecodingContainer {
       return nil
     }
 
-    // Try decoding as an obect
+    // Try decoding as an object
     return try decode(T.self, forKey: key)
   }
 }
