@@ -14,4 +14,3 @@ struct StringRepeatTests {
     #expect("ha" * 0 == "")
   }
 }
-

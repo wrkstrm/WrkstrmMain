@@ -17,4 +17,3 @@ extension String {
     String(repeating: left, count: right)
   }
 }
-
