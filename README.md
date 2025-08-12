@@ -77,6 +77,87 @@ Example Extensions:
 
 - `Optional<T>` where `T: Comparable & Equatable`: Adds comparison functionality to Optionals.
 
+### Random String Utilities
+
+See [Random.swift](Sources/WrkstrmMain/Random/Random.swift).
+
+```swift
+let ascii = Random.printableASCII(length: 8)
+let emoji = Random.emoji(length: 3)
+let mixed = Random.mixed(length: 5, noConfusing: true)
+```
+
+### JSON Helpers
+
+[JSON.swift](Sources/WrkstrmMain/JSON/JSON.swift) defines `JSON.AnyDictionary` and
+[`KeyedDecodingContainer+FuzzyDecoding.swift`](Sources/WrkstrmMain/JSON/KeyedDecodingContainer+FuzzyDecoding.swift)
+adds `decodeArrayAllowingNullOrSingle`.
+
+```swift
+let object: JSON.AnyDictionary = ["name": "Alice", "age": 30]
+
+struct Wrapper: Decodable {
+    let items: [Int]?
+
+    enum CodingKeys: String, CodingKey { case items }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        items = try container.decodeArrayAllowingNullOrSingle(Int.self, forKey: .items)
+    }
+}
+```
+
+### Path-Filtering Utilities on `[String]`
+
+See [`String+Source.swift`](Sources/WrkstrmMain/Extensions/String/String+Source.swift).
+
+```swift
+let paths = ["View.swift", "Main.storyboard", "Base.lproj/Main.storyboard"]
+let sources = paths.sourceFiles      // ["View.swift"]
+let nibs = paths.nibFiles            // ["Main.storyboard", "Base.lproj/Main.storyboard"]
+```
+
+### Custom Collections
+
+Custom collection types are available in
+[BinaryTree.swift](Sources/WrkstrmMain/CustomCollections/Classes/BinaryTree.swift),
+[SortedArray.swift](Sources/WrkstrmMain/CustomCollections/Structs/SortedArray.swift) and
+[IndexedCollection.swift](Sources/WrkstrmMain/CustomCollections/Structs/IndexedCollection.swift).
+
+```swift
+let tree = BinaryTree(5)
+tree.insert(3)
+tree.insert(7)
+
+var numbers = SortedArray(unsorted: [3, 1, 2])
+numbers.insert(5)
+
+for (index, element) in ["a", "b"].indexed() {
+    print(index, element)
+}
+```
+
+### `Injectable` Protocol Usage
+
+See [Injectable.swift](Sources/WrkstrmMain/Protocols/Injectable.swift).
+
+```swift
+struct NetworkService { }
+
+final class UserViewModel: Injectable {
+    typealias Resource = NetworkService
+    private var service: NetworkService?
+
+    func inject(_ resource: NetworkService) { service = resource }
+    func assertDependencies() { precondition(service != nil) }
+}
+
+let vm = UserViewModel()
+vm.inject(NetworkService())
+vm.assertDependencies()
+```
+
 ## 🎨 Customization
 
 `WrkstrmMain` is built with extension in mind. You can tailor it to fit your
