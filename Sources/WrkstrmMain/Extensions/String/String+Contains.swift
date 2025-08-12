@@ -22,16 +22,16 @@ extension String {
     return true
   }
 
-  /// Determines if the string is a permutation of another string.
+  /// Determines if the string is a permutation of another string using a simple heuristic.
   ///
-  /// This method checks if two strings have the same character count and the same sum of Unicode
-  /// scalar values, which implies that one string is a permutation of the other.
+  /// This approach compares the two strings' lengths and the sum of their Unicode scalar values.
+  /// - Warning: This heuristic only works when each string's Unicode scalar values are unique—no
+  ///   repeated characters or shared scalar values. If characters repeat, the result may be
+  ///   incorrect. Intended for quick checks on strings known to contain unique characters; for
+  ///   general-purpose permutation tests, use a frequency-count algorithm instead.
   ///
-  /// Note: This method assumes that the strings consist of characters with unique Unicode scalar
-  /// values.For strings with characters having the same scalar values, this method may produce
-  /// incorrect results.
-  ///
-  /// For example, "abc" and "cab" are permutations, but "abc" and "def" are not.
+  /// For example, "abc" and "cab" are permutations, but "aab" and "aba" are not handled
+  /// correctly by this heuristic.
   ///
   /// - Parameter other: The string to compare against.
   /// - Returns: `true` if the string is a permutation of the other string, otherwise `false`.
