@@ -61,7 +61,9 @@ Example Extensions:
 
 - `camelCaseToKebabCase()`: Convert a camelCase string to kebab-case.
 - `containsUniqueChars()`: Check if a string contains all unique characters.
-- `isPermutation(_:)`: Check if a string is a permutation of another string.
+- `isPermutation(_:)`: Check if a string is a permutation of another string. **Warning:** This
+  heuristic assumes each Unicode scalar appears only once in both strings. For strings with
+  repeated scalars, use a frequency-based comparison instead.
 - ``*`` operator: Repeat a string by multiplying it with an integer.
 
 ### Collection Extensions
