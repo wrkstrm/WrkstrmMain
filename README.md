@@ -79,7 +79,51 @@ Example Extensions:
 
 ## 🎨 Customization
 
-Customize and extend `WrkstrmMain` to suit your project's specific needs.
+`WrkstrmMain` is built with extension in mind. You can tailor it to fit your
+project by tapping into a few key extension points:
+
+- **Random generators** – Extend the `Random` namespace with custom routines
+  for generating domain‑specific strings.
+
+  ```swift
+  extension Random {
+      /// Random hexadecimal string
+      public static func hex(length: Int) -> String {
+          let hex = "0123456789ABCDEF"
+          return String((0..<length).map { _ in hex.randomElement()! })
+      }
+  }
+  ```
+
+- **Custom collection types** – Build domain‑specific collections by composing
+  existing types such as `SortedArray` or by conforming to Swift's `Collection`
+  protocols.
+
+- **Dependency injection** – Adopt the `Injectable` protocol to keep
+  dependencies loosely coupled. Conforming types can have resources injected
+  from the outside and verify that everything is wired correctly.
+
+  ```swift
+  struct NetworkService {
+      func request(_ path: String) { /* ... */ }
+  }
+
+  final class UserViewModel: Injectable {
+      typealias Resource = NetworkService
+      private var service: NetworkService?
+
+      func inject(_ resource: NetworkService) {
+          service = resource
+      }
+
+      func assertDependencies() {
+          precondition(service != nil, "NetworkService must be injected")
+      }
+  }
+  ```
+
+These hooks make `WrkstrmMain` easy to integrate with project‑specific types
+and behaviors.
 
 ## 🤝 Contributing
 
