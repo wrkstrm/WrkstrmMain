@@ -99,31 +99,36 @@ project by tapping into a few key extension points:
   existing types such as `SortedArray` or by conforming to Swift's `Collection`
   protocols.
 
-- **Dependency injection** – Adopt the `Injectable` protocol to keep
-  dependencies loosely coupled. Conforming types can have resources injected
-  from the outside and verify that everything is wired correctly.
-
-  ```swift
-  struct NetworkService {
-      func request(_ path: String) { /* ... */ }
-  }
-
-  final class UserViewModel: Injectable {
-      typealias Resource = NetworkService
-      private var service: NetworkService?
-
-      func inject(_ resource: NetworkService) {
-          service = resource
-      }
-
-      func assertDependencies() {
-          precondition(service != nil, "NetworkService must be injected")
-      }
-  }
-  ```
-
 These hooks make `WrkstrmMain` easy to integrate with project‑specific types
 and behaviors.
+
+## 🧩 Dependency Injection
+
+Adopt the ``Injectable`` protocol to keep dependencies loosely coupled. Conforming
+types can accept resources from the outside and verify that everything is wired
+correctly.
+
+```swift
+struct NetworkService {
+    func request(_ path: String) { /* ... */ }
+}
+
+final class UserViewModel: Injectable {
+    typealias Resource = NetworkService
+    private var service: NetworkService?
+
+    func inject(_ resource: NetworkService) {
+        service = resource
+    }
+
+    func assertDependencies() {
+        precondition(service != nil, "NetworkService must be injected")
+    }
+}
+```
+
+See the [Injectable documentation](Sources/WrkstrmMain/Documentation.docc/Injectable.md)
+for a deeper explanation and more examples.
 
 ## 🤝 Contributing
 
