@@ -108,9 +108,11 @@ struct Wrapper: Decodable {
 }
 ```
 
-### Path-Filtering Utilities on `[String]`
+### Path Utilities
 
-See [`String+Source.swift`](Sources/WrkstrmMain/Extensions/String/String+Source.swift).
+Filter arrays of path strings using the `sourceFiles`, `nibFiles`, `baseLocalizedNibFiles`, and `unlocalizedNibFiles` properties.
+
+See the [Source File Filters documentation](Sources/WrkstrmMain/Documentation.docc/SourceFileFilters.md) for more examples.
 
 ```swift
 let paths = ["View.swift", "Main.storyboard", "Base.lproj/Main.storyboard"]
