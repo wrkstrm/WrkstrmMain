@@ -28,7 +28,7 @@ public struct SortedArray<Element>: Collection {
 
   /// The end index of the collection.
   public var endIndex: Int { elements.endIndex }
-  
+
   public var last: Element? { elements.last }
 
   /// Accesses the element at the specified position.
