@@ -11,7 +11,7 @@ public enum Random {
     -> String
   {
     let table = noConfusing ? safeASCII : asciiTable
-    return String((0..<length).map { _ in table.randomElement()! })
+    return String((0..<length).compactMap { _ in table.randomElement() })
   }
 
   /// Returns a random string of single-scalar emoji with default emoji presentation.
@@ -19,7 +19,7 @@ public enum Random {
   /// - Parameter length: Number of emoji to generate.
   /// - Returns: A string composed of printable emoji.
   public static func emoji(length: Int) -> String {
-    String((0..<length).map { _ in emojiTable.randomElement()! })
+    String((0..<length).compactMap { _ in emojiTable.randomElement() })
   }
 
   /// Returns a string with mixed printable ASCII and emoji characters.
@@ -32,7 +32,7 @@ public enum Random {
   /// - Returns: A mixed string of ASCII and emoji characters.
   public static func mixed(length: Int, noConfusing: Bool = false) -> String {
     let table = noConfusing ? safeMixed : allTable
-    return String((0..<length).map { _ in table.randomElement()! })
+    return String((0..<length).compactMap { _ in table.randomElement() })
   }
 
   //MARK: - Private
