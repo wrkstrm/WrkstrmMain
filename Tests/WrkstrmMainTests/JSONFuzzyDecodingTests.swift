@@ -3,6 +3,11 @@ import Testing
 
 @testable import WrkstrmMain
 
+// These tests guard our "fuzzy" JSON decoders. Real-world APIs often return
+// inconsistent shapes like `null`, a single object, or an array for the same
+// field. We allow those tolerated variants while still surfacing malformed
+// data to avoid silently corrupting models.
+
 private struct Item: Codable, Equatable {
   let name: String
 }
@@ -32,6 +37,7 @@ private struct ObjectWrapper: Decodable {
 struct JSONFuzzyDecodingTests {
   // MARK: - decodeArrayAllowingNullOrSingle
 
+  // Null arrays should behave like a missing field instead of failing.
   @Test
   func decodeArrayWithNull() throws {
     let json = #"{"items": null}"#.data(using: .utf8)!
@@ -39,6 +45,8 @@ struct JSONFuzzyDecodingTests {
     #expect(result.items == nil)
   }
 
+  // Some services send a single object where an array is expected; we coerce it
+  // into a single-element array to preserve data.
   @Test
   func decodeArrayWithSingleObject() throws {
     let json = #"{"items": {"name": "A"}}"#.data(using: .utf8)!
@@ -46,6 +54,7 @@ struct JSONFuzzyDecodingTests {
     #expect(result.items == [Item(name: "A")])
   }
 
+  // A properly formed array should decode normally.
   @Test
   func decodeArrayWithArray() throws {
     let json = #"{"items": [{"name": "A"}, {"name": "B"}]}"#.data(using: .utf8)!
@@ -53,6 +62,7 @@ struct JSONFuzzyDecodingTests {
     #expect(result.items == [Item(name: "A"), Item(name: "B")])
   }
 
+  // Any other type indicates a server bug and should throw.
   @Test
   func decodeArrayWithMalformedValue() throws {
     let json = #"{"items": 1}"#.data(using: .utf8)!
@@ -63,6 +73,7 @@ struct JSONFuzzyDecodingTests {
 
   // MARK: - decodeAllowingNullOrEmptyObject
 
+  // Null objects should be treated as the absence of a value.
   @Test
   func decodeObjectWithNull() throws {
     let json = #"{"item": null}"#.data(using: .utf8)!
@@ -70,6 +81,7 @@ struct JSONFuzzyDecodingTests {
     #expect(result.item == nil)
   }
 
+  // Some APIs use an empty object to mean "no data"; map it to `nil`.
   @Test
   func decodeObjectWithEmptyObject() throws {
     let json = #"{"item": {}}"#.data(using: .utf8)!
@@ -77,6 +89,7 @@ struct JSONFuzzyDecodingTests {
     #expect(result.item == nil)
   }
 
+  // When a real object is present it should decode successfully.
   @Test
   func decodeObjectWithSingleObject() throws {
     let json = #"{"item": {"name": "A"}}"#.data(using: .utf8)!
@@ -84,6 +97,7 @@ struct JSONFuzzyDecodingTests {
     #expect(result.item == Item(name: "A"))
   }
 
+  // Non-object values shouldn't be silently accepted; they must throw.
   @Test
   func decodeObjectWithMalformedValue() throws {
     let json = #"{"item": 1}"#.data(using: .utf8)!
