@@ -30,6 +30,8 @@ struct ListTests {
 
   @Test
   func testDoubleLinkedEqualityAndReferences() {
+    // Ensures doubly linked nodes maintain correct equality and previous/next references,
+    // guarding against corrupted links when traversing the list.
     let head = List.double(previous: nil, current: 1, next: nil)
     let tail = List.double(previous: head, current: 2, next: nil)
     let tailCopy = List.double(previous: head, current: 2, next: nil)
@@ -46,6 +48,7 @@ struct ListTests {
 
   @Test
   func testIteratorNextReturnsNilPastEnd() {
+    // Confirms that iterating beyond the final node returns nil, preventing infinite loops.
     let list = two
     var iterator = list.makeIterator()
 
