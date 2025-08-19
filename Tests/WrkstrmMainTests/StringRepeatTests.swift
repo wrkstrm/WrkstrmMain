@@ -14,7 +14,7 @@ struct StringRepeatTests {
     #expect("ha" * 0 == "")
   }
 
-#if swift(>=6.2)
+  #if swift(>=6.2)
   // Guard against undefined behavior by ensuring negative repeat counts
   // trigger a precondition failure rather than silently producing a value.
   @Test
@@ -23,7 +23,7 @@ struct StringRepeatTests {
       _ = "ha" * -1
     }
   }
-#endif
+  #endif
 
   // Verifies the repeat algorithm scales for large counts and returns
   // the expected character count.

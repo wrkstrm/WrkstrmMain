@@ -28,4 +28,3 @@ struct ArrayFilterTests {
     #expect(result.isEmpty)
   }
 }
-

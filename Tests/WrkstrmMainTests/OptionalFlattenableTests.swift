@@ -51,4 +51,3 @@ struct OptionalFlattenableTests {
     #expect(flattened == nil)
   }
 }
-

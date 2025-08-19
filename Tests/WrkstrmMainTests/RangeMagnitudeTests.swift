@@ -20,4 +20,3 @@ struct RangeMagnitudeTests {
     #expect(range.magnitude == 0.0)
   }
 }
-
