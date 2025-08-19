@@ -27,4 +27,31 @@ struct ListTests {
     let five = List.single(5, next: four)
     #expect(five == five)
   }
+
+  @Test
+  func testDoubleLinkedEqualityAndReferences() {
+    let head = List.double(previous: nil, current: 1, next: nil)
+    let tail = List.double(previous: head, current: 2, next: nil)
+    let tailCopy = List.double(previous: head, current: 2, next: nil)
+
+    #expect(tail == tailCopy)
+
+    if case .double(let prev, _, let next) = tail {
+      #expect(prev == head)
+      #expect(next == nil)
+    } else {
+      #expect(Bool(false), "expected double list")
+    }
+  }
+
+  @Test
+  func testIteratorNextReturnsNilPastEnd() {
+    let list = two
+    var iterator = list.makeIterator()
+
+    _ = iterator.next()
+    _ = iterator.next()
+
+    #expect(iterator.next() == nil)
+  }
 }
