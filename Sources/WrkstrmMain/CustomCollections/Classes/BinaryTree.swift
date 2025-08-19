@@ -83,17 +83,17 @@ public class BinaryTree<Value: Comparable> {
     switch order {
     case .pre:
       block(self)
-      left?.traverse(block: block)
-      right?.traverse(block: block)
+      left?.traverse(order, block: block)
+      right?.traverse(order, block: block)
 
     case .in:
-      left?.traverse(block: block)
+      left?.traverse(order, block: block)
       block(self)
-      right?.traverse(block: block)
+      right?.traverse(order, block: block)
 
     case .post:
-      left?.traverse(block: block)
-      right?.traverse(block: block)
+      left?.traverse(order, block: block)
+      right?.traverse(order, block: block)
       block(self)
     }
   }
