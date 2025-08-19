@@ -15,7 +15,7 @@ extension CommandLine {
   /// `splitArguments`
   ///  is empty, this will cause a runtime crash.
   public static var executableName: String {
-    String(splitArguments.last!)
+    splitArguments.last.map(String.init) ?? ""
   }
 
   /// Returns the executable path of the current process.
