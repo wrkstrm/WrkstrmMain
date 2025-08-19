@@ -76,4 +76,31 @@ struct RandomTests {
     let result = Random.mixed(length: length)
     #expect(result.count == length)
   }
+
+  // MARK: - Emoji restrictions
+  // Generated emoji should mirror the restrictions used when building the
+  // emoji table to avoid combining marks or variation selectors slipping in.
+
+  @Test
+  // Emoji output should consist solely of standalone emoji scalars.
+  func emojiUsesStandaloneEmoji() {
+    let result = Random.emoji(length: 128)
+    let allStandalone = result.allSatisfy { ch in
+      ch.unicodeScalars.count == 1 &&
+        Random.isStandaloneEmoji(ch.unicodeScalars.first!)
+    }
+    #expect(allStandalone)
+  }
+
+  @Test
+  // Mixed output should apply the same emoji restrictions for non-ASCII.
+  func mixedEmojiUsesSameRestrictions() {
+    let result = Random.mixed(length: 128)
+    let allValid = result.allSatisfy { ch in
+      let scalar = ch.unicodeScalars.first!
+      if scalar.isASCII { return ch.unicodeScalars.count == 1 }
+      return ch.unicodeScalars.count == 1 && Random.isStandaloneEmoji(scalar)
+    }
+    #expect(allValid)
+  }
 }
