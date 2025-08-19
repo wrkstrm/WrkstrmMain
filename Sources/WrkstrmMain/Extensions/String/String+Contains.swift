@@ -22,22 +22,33 @@ extension String {
     return true
   }
 
-  /// Determines if the string is a permutation of another string using a simple heuristic.
+  /// Determines if the string is a permutation of another string using a
+  /// frequency count of characters.
   ///
-  /// This approach compares the two strings' lengths and the sum of their Unicode scalar values.
-  /// - Warning: This heuristic only works when each string's Unicode scalar values are unique—no
-  ///   repeated characters or shared scalar values. If characters repeat, the result may be
-  ///   incorrect. Intended for quick checks on strings known to contain unique characters; for
-  ///   general-purpose permutation tests, use a frequency-count algorithm instead.
-  ///
-  /// For example, "abc" and "cab" are permutations, but "aab" and "aba" are not handled
-  /// correctly by this heuristic.
+  /// Each string's characters are tallied and compared to ensure both strings
+  /// contain the same characters with the same frequencies. This approach
+  /// handles repeated characters correctly and runs in O(*n*) time.
   ///
   /// - Parameter other: The string to compare against.
   /// - Returns: `true` if the string is a permutation of the other string, otherwise `false`.
   public func isPermutation(_ other: String) -> Bool {
     guard count == other.count else { return false }
-    return unicodeScalars.reduce(0) { $0 + $1.value }
-      == other.unicodeScalars.reduce(0) { $0 + $1.value }
+
+    var characterCounts: [Character: Int] = [:]
+
+    for character in self {
+      characterCounts[character, default: 0] += 1
+    }
+
+    for character in other {
+      guard let current = characterCounts[character] else { return false }
+      if current == 1 {
+        characterCounts.removeValue(forKey: character)
+      } else {
+        characterCounts[character] = current - 1
+      }
+    }
+
+    return characterCounts.isEmpty
   }
 }

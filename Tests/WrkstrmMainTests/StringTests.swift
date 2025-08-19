@@ -38,4 +38,14 @@ struct StringTests {
   func testPermutationPositive() {
     #expect("ab".isPermutation("ba"))
   }
+
+  @Test
+  func testPermutationReorderedCharacters() {
+    #expect("abc".isPermutation("cab"))
+  }
+
+  @Test
+  func testPermutationRepeatingCharacters() {
+    #expect("aab".isPermutation("aba"))
+  }
 }
