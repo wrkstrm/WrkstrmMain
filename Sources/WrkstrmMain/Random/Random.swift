@@ -49,11 +49,15 @@ public enum Random {
   /// Emoji characters that:
   /// - are a single Unicode scalar
   /// - have default emoji presentation
+  /// - stand alone as individual grapheme clusters (exclude modifiers/selectors)
   private static let emojiTable: [Character] = {
     (0...0x10FFFF).compactMap { cp in
       guard let scalar = UnicodeScalar(cp),
         scalar.properties.isEmoji,
-        scalar.properties.isEmojiPresentation
+        scalar.properties.isEmojiPresentation,
+        scalar.properties.isGraphemeBase,
+        !scalar.properties.isEmojiModifier,
+        !scalar.properties.isVariationSelector
       else {
         return nil
       }
