@@ -10,10 +10,8 @@ extension CommandLine {
   /// and taking the last component of the result.
   /// It's assumed that the first argument (`arguments[0]`) is the path to the executable.
   ///
-  /// - Returns: A `String` representing the name of the executable.
-  /// - Warning: This property unwraps the last component of `splitArguments` forcibly. If
-  /// `splitArguments`
-  ///  is empty, this will cause a runtime crash.
+  /// - Returns: A `String` representing the name of the executable. If no
+  ///   argument is present, an empty string is returned.
   public static var executableName: String {
     splitArguments.last.map(String.init) ?? ""
   }
