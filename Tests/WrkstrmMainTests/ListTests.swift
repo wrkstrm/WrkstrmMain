@@ -42,7 +42,7 @@ struct ListTests {
       #expect(prev == head)
       #expect(next == nil)
     } else {
-      #expect(Bool(false), "expected double list")
+      Issue.record("expected double list")
     }
   }
 
