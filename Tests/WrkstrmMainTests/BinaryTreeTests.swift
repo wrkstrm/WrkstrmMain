@@ -5,6 +5,7 @@ import Testing
 struct BinaryTreeTests {
   var tree: BinaryTree = .init(1)
 
+  /// Verifies count updates after sequential inserts, catching regressions in basic insertion logic.
   @Test
   func basicInsertion() {
     tree.insert(3)
@@ -17,6 +18,7 @@ struct BinaryTreeTests {
     #expect(tree.count == 8)
   }
 
+  /// Ensures count remains accurate for a variety of insertion patterns.
   @Test
   func randomTreeCount() {
     let randomTree: BinaryTree = .init(1)
@@ -27,6 +29,7 @@ struct BinaryTreeTests {
     #expect(randomTree.count == (randomCount + 1))
   }
 
+  /// Confirms duplicate values are consistently routed to the right and counted.
   @Test
   func duplicateInsertion() {
     let root = BinaryTree(5)
@@ -40,6 +43,7 @@ struct BinaryTreeTests {
     #expect(second.parent === first)
   }
 
+  /// Validates that traversal honors pre-, in-, and post-order sequences after recursion bug fix.
   @Test
   func traversalOrders() {
     let root = BinaryTree(4)
@@ -63,6 +67,7 @@ struct BinaryTreeTests {
     #expect(post == [1, 3, 2, 5, 7, 6, 4])
   }
 
+  /// Checks `isRoot`, `isLeaf`, and `parent` links to prevent reference errors.
   @Test
   func nodeRelationships() {
     let root = BinaryTree(10)
