@@ -61,9 +61,8 @@ Example Extensions:
 
 - `camelCaseToKebabCase()`: Convert a camelCase string to kebab-case.
 - `containsUniqueChars()`: Check if a string contains all unique characters.
-- `isPermutation(_:)`: Check if a string is a permutation of another string. **Warning:** This
-  heuristic assumes each Unicode scalar appears only once in both strings. For strings with
-  repeated scalars, use a frequency-based comparison instead.
+- `isPermutation(_:)`: Check if a string is a permutation of another string using a
+  frequency-based comparison.
 - ``*`` operator: Repeat a string by multiplying it with an integer.
 
 ### Collection Extensions
@@ -214,6 +213,14 @@ final class UserViewModel: Injectable {
 
 See the [Injectable documentation](Sources/WrkstrmMain/Documentation.docc/Injectable.md)
 for a deeper explanation and more examples.
+
+## 🧪 Testing
+
+Automated tests protect this library from regressions and document its
+expected behavior. They surface edge cases—like the permutation bug
+captured by our failing regression test—and give contributors confidence
+when refactoring. Please run `swift test` before submitting changes to
+ensure the codebase remains stable.
 
 ## 🤝 Contributing
 
