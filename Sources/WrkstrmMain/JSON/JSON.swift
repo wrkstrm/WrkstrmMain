@@ -27,5 +27,24 @@ public enum JSON {
   ///
   /// This struct can be used as a placeholder or marker type where a `Codable` type is required
   /// but no data needs to be encoded or decoded.
-  struct EmptyCodableStruct: Codable {}
+  ///
+  /// When decoding, it validates that the underlying JSON value is an empty object (`{}`).
+  /// Attempts to decode any other shape result in a decoding error, which is used by
+  /// `decodeAllowingNullOrEmptyObject` to distinguish empty objects from real values.
+  struct EmptyCodableStruct: Codable {
+    init() {}
+
+    init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: AnyCodingKey.self)
+      guard container.allKeys.isEmpty else {
+        throw DecodingError.dataCorrupted(
+          .init(codingPath: decoder.codingPath, debugDescription: "Expected empty object")
+        )
+      }
+    }
+
+    func encode(to encoder: Encoder) throws {
+      _ = encoder.container(keyedBy: AnyCodingKey.self)
+    }
+  }
 }
