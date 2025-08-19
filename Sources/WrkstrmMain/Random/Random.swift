@@ -23,6 +23,8 @@ public enum Random {
   }
 
   /// Returns a string with mixed printable ASCII and emoji characters.
+  /// Emoji characters follow the same restrictions as ``emoji(length:)``
+  /// (single Unicode scalar with default emoji presentation).
   ///
   /// - Parameters:
   ///   - length: Number of characters to generate.
@@ -52,18 +54,24 @@ public enum Random {
   /// - stand alone as individual grapheme clusters (exclude modifiers/selectors)
   private static let emojiTable: [Character] = {
     (0...0x10FFFF).compactMap { cp in
-      guard let scalar = UnicodeScalar(cp),
-        scalar.properties.isEmoji,
-        scalar.properties.isEmojiPresentation,
-        scalar.properties.isGraphemeBase,
-        !scalar.properties.isEmojiModifier,
-        !scalar.properties.isVariationSelector
-      else {
+      guard let scalar = UnicodeScalar(cp), isStandaloneEmoji(scalar) else {
         return nil
       }
       return Character(scalar)
     }
   }()
+
+  /// Standalone emoji restriction used throughout the module.
+  /// - The scalar must itself be an emoji (no multi-scalar sequences).
+  /// - It must default to the emoji presentation.
+  /// - Modifiers and variation selectors are excluded.
+  static func isStandaloneEmoji(_ scalar: UnicodeScalar) -> Bool {
+    scalar.properties.isEmoji &&
+      scalar.properties.isEmojiPresentation &&
+      scalar.properties.isGraphemeBase &&
+      !scalar.properties.isEmojiModifier &&
+      !scalar.properties.isVariationSelector
+  }
 
   /// All printable characters: ASCII + emoji.
   private static let allTable: [Character] = asciiTable + emojiTable
