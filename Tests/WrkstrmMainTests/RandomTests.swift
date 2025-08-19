@@ -86,8 +86,7 @@ struct RandomTests {
   func emojiUsesStandaloneEmoji() {
     let result = Random.emoji(length: 128)
     let allStandalone = result.allSatisfy { ch in
-      ch.unicodeScalars.count == 1 &&
-        Random.isStandaloneEmoji(ch.unicodeScalars.first!)
+      ch.unicodeScalars.count == 1 && Random.isStandaloneEmoji(ch.unicodeScalars.first!)
     }
     #expect(allStandalone)
   }
