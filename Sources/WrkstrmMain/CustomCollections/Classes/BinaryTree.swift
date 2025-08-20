@@ -59,23 +59,20 @@ public class BinaryTree<Value: Comparable> {
   /// - Returns: The binary tree node where the value was inserted.
   @discardableResult
   public func insert(_ value: Value) -> BinaryTree {
-    if value < self.value {
-      if let left {
-        return left.insert(value)
-      } else {
-        let newNode = BinaryTree(value, parent: self)
-        left = newNode
-        return newNode
-      }
-    } else {
-      if let right {
-        return right.insert(value)
-      } else {
+    guard value < self.value else {
+      guard let right else {
         let newNode = BinaryTree(value, parent: self)
         right = newNode
         return newNode
       }
+      return right.insert(value)
     }
+    guard let left else {
+      let newNode = BinaryTree(value, parent: self)
+      left = newNode
+      return newNode
+    }
+    return left.insert(value)
   }
 
   /// Traverses the binary tree in the specified order and performs a given action on each node.
