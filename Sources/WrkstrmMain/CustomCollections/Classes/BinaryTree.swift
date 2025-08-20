@@ -60,21 +60,19 @@ public class BinaryTree<Value: Comparable> {
   @discardableResult
   public func insert(_ value: Value) -> BinaryTree {
     if value < self.value {
-      if let left {
-        return left.insert(value)
-      } else {
+      guard let left else {
         let newNode = BinaryTree(value, parent: self)
-        left = newNode
+        self.left = newNode
         return newNode
       }
+      return left.insert(value)
     } else {
-      if let right {
-        return right.insert(value)
-      } else {
+      guard let right else {
         let newNode = BinaryTree(value, parent: self)
-        right = newNode
+        self.right = newNode
         return newNode
       }
+      return right.insert(value)
     }
   }
 

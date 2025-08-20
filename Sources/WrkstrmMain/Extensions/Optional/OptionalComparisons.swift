@@ -6,7 +6,7 @@
 /// - `nil` is considered less than any non-nil value.
 public func < <Wrapped: Comparable>(lhs: Wrapped?, rhs: Wrapped?) -> Bool {
   switch (lhs, rhs) {
-  case let (l?, r?):
+  case (let l?, let r?):
     return l < r
   case (nil, .some):
     return true
