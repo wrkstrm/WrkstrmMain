@@ -74,6 +74,7 @@ public class BinaryTree<Value: Comparable> {
       }
       return right.insert(value)
     }
+    return left.insert(value)
   }
 
   /// Traverses the binary tree in the specified order and performs a given action on each node.
