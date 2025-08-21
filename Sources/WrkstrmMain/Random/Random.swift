@@ -66,9 +66,10 @@ public enum Random {
   /// - It must default to the emoji presentation.
   /// - Modifiers and variation selectors are excluded.
   static func isStandaloneEmoji(_ scalar: UnicodeScalar) -> Bool {
-    scalar.properties.isEmoji && scalar.properties.isEmojiPresentation
+    let isRegionalIndicator = (0x1F1E6...0x1F1FF).contains(scalar.value)
+    return scalar.properties.isEmoji && scalar.properties.isEmojiPresentation
       && scalar.properties.isGraphemeBase && !scalar.properties.isEmojiModifier
-      && !scalar.properties.isVariationSelector
+      && !scalar.properties.isVariationSelector && !isRegionalIndicator
   }
 
   /// All printable characters: ASCII + emoji.
