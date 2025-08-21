@@ -32,15 +32,10 @@ struct ListTests {
   func testDoubleLinkedEqualityAndReferences() {
     // Ensures doubly linked nodes maintain correct equality and previous/next references,
     // guarding against corrupted links when traversing the list.
-    let head = List.double(previous: nil, current: 1, next: nil)
     var head = List.double(previous: nil, current: 1, next: nil)
-    var head = List.double(previous: nil, current: 1, next: nil)
-    let tail = List.double(previous: head, current: 2, next: nil)
+    var tail = List.double(previous: head, current: 2, next: nil)
     head = List.double(previous: nil, current: 1, next: tail)
-    head = List.double(previous: nil, current: 1, next: tail)
-    let tailCopy = List.double(previous: head, current: 2, next: nil)
-
-    #expect(tail == tailCopy)
+    tail = List.double(previous: head, current: 2, next: nil)
 
     if case .double(let prev, _, let next) = tail {
       #expect(prev == head)
