@@ -17,7 +17,14 @@
 
 ## Compatibility
 
-- macOS
+WrkstrmMain requires Swift 6.1 or later and supports:
+
+- iOS 16+
+- macOS 13+
+- macCatalyst 13+
+- tvOS 16+
+- visionOS 1+
+- watchOS 9+
 - Linux
 
 ## 📦 Installation
