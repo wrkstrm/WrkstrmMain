@@ -83,7 +83,7 @@ Example Extensions:
 
 ### `Optional` Comparable Extension
 
-- `Optional<T>` where `T: Comparable & Equatable`: Adds comparison functionality to Optionals.
+  - `Optional<T>` where `T: Comparable`: Adds `<` and `>` comparison operators for optional values without requiring a full `Comparable` conformance.
 
 ### Random String Utilities
 
