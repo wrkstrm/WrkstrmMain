@@ -81,6 +81,14 @@ struct JSONFuzzyDecodingTests {
     #expect(result.item == nil)
   }
 
+  // A missing key should gracefully decode to `nil`.
+  @Test
+  func decodeObjectMissingKey() throws {
+    let json = #"{}"#.data(using: .utf8)!
+    let result = try JSONDecoder().decode(ObjectWrapper.self, from: json)
+    #expect(result.item == nil)
+  }
+
   // Some APIs use an empty object to mean "no data"; map it to `nil`.
   @Test
   func decodeObjectWithEmptyObject() throws {
@@ -97,10 +105,36 @@ struct JSONFuzzyDecodingTests {
     #expect(result.item == Item(name: "A"))
   }
 
+  // Strings containing the literal "null" should also decode to `nil`.
+  @Test
+  func decodeObjectWithStringNull() throws {
+    let json = #"{"item": "null"}"#.data(using: .utf8)!
+    let result = try JSONDecoder().decode(ObjectWrapper.self, from: json)
+    #expect(result.item == nil)
+  }
+
   // Non-object values shouldn't be silently accepted; they must throw.
   @Test
   func decodeObjectWithMalformedValue() throws {
     let json = #"{"item": 1}"#.data(using: .utf8)!
+    #expect(throws: DecodingError.self) {
+      try JSONDecoder().decode(ObjectWrapper.self, from: json)
+    }
+  }
+
+  // Arrays are also invalid and should trigger a decoding error.
+  @Test
+  func decodeObjectWithArrayValue() throws {
+    let json = #"{"item": []}"#.data(using: .utf8)!
+    #expect(throws: DecodingError.self) {
+      try JSONDecoder().decode(ObjectWrapper.self, from: json)
+    }
+  }
+
+  // Non-null strings other than "null" must throw to avoid data loss.
+  @Test
+  func decodeObjectWithStringValue() throws {
+    let json = #"{"item": "value"}"#.data(using: .utf8)!
     #expect(throws: DecodingError.self) {
       try JSONDecoder().decode(ObjectWrapper.self, from: json)
     }
