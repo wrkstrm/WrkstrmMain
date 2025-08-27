@@ -49,7 +49,15 @@ extension KeyedDecodingContainer {
     _ type: T.Type = T.self,
     forKey key: Key
   ) throws -> T? where T: Decodable {
+    guard contains(key) else {
+      return nil
+    }
+
     if try decodeNil(forKey: key) {
+      return nil
+    }
+
+    if (try? decode(String.self, forKey: key)) == "null" {
       return nil
     }
 
