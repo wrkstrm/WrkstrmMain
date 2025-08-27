@@ -99,19 +99,26 @@ let mixed = Random.mixed(length: 5, noConfusing: true)
 
 [JSON.swift](Sources/WrkstrmMain/JSON/JSON.swift) defines `JSON.AnyDictionary` and
 [`KeyedDecodingContainer+FuzzyDecoding.swift`](Sources/WrkstrmMain/JSON/KeyedDecodingContainer+FuzzyDecoding.swift)
-adds `decodeArrayAllowingNullOrSingle`.
+adds helpers for dealing with inconsistent API responses:
+
+- `decodeAllowingNullOrEmptyObject` maps `null`, the string "null", or `{}` to `nil`.
+- `decodeArrayAllowingNullOrSingle` normalizes `null`, a single object, or an array into an optional array.
+
+These functions prevent decoding failures for "no data" placeholders while still throwing when a value has an unexpected shape.
 
 ```swift
 let object: JSON.AnyDictionary = ["name": "Alice", "age": 30]
 
 struct Wrapper: Decodable {
-    let items: [Int]?
+    let item: Item?
+    let items: [Item]?
 
-    enum CodingKeys: String, CodingKey { case items }
+    enum CodingKeys: String, CodingKey { case item, items }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        items = try container.decodeArrayAllowingNullOrSingle(Int.self, forKey: .items)
+        item = try container.decodeAllowingNullOrEmptyObject(Item.self, forKey: .item)
+        items = try container.decodeArrayAllowingNullOrSingle(Item.self, forKey: .items)
     }
 }
 ```
