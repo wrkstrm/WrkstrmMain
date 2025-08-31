@@ -4,7 +4,8 @@ Utilities on arrays of path strings for picking out specific kinds of files.
 
 ## Overview
 
-The `[String]` extension defines four computed properties that help separate source and Interface Builder files from a mixed list of paths.
+The `[String]` extension defines four computed properties that help separate source and Interface
+Builder files from a mixed list of paths.
 
 ## Examples
 

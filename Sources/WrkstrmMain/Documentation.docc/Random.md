@@ -1,16 +1,18 @@
-# ``Random``
+# `Random`
 
-A namespace for generating random character sequences for use in CLIs, tokens, diagnostics, and visually compact entropy.
+A namespace for generating random character sequences for use in CLIs, tokens, diagnostics, and
+visually compact entropy.
 
-Supports printable ASCII, emoji, and mixed-character string generation with optional exclusion of visually confusing characters.
+Supports printable ASCII, emoji, and mixed-character string generation with optional exclusion of
+visually confusing characters.
 
 ## Topics
 
 ### Generating Random Strings
 
-- ``printableASCII(length:noConfusing:)``
-- ``emoji(length:)``
-- ``mixed(length:noConfusing:)``
+- `printableASCII(length:noConfusing:)`
+- `emoji(length:)`
+- `mixed(length:noConfusing:)`
 
 ## Overview
 
@@ -20,7 +22,8 @@ The `Random` namespace provides static functions to generate strings using diffe
 - Emoji with default presentation (excluding modifier and multi-codepoint emoji)
 - A mixed combination of the two
 
-Each function supports variable lengths and, for ASCII and mixed modes, a `noConfusing` option to exclude characters like `0`, `O`, `1`, `l`, and `I`.
+Each function supports variable lengths and, for ASCII and mixed modes, a `noConfusing` option to
+exclude characters like `0`, `O`, `1`, `l`, and `I`.
 
 ## Example Usage
 
@@ -36,15 +39,16 @@ Random.mixed(length: 5)
 
 Random.mixed(length: 5, noConfusing: true)
 // e.g. "7🐍x@🌈"
-````
+```
 
 ## Character Pools
 
-* ASCII character pool contains 95 characters
-* Emoji pool contains \~1212 characters with default emoji presentation
-* Mixed pool combines both for 1307 total characters
+- ASCII character pool contains 95 characters
+- Emoji pool contains \~1212 characters with default emoji presentation
+- Mixed pool combines both for 1307 total characters
 
-With just 2 characters from the mixed set, you can represent over 1.7 million distinct values (`1307^2`).
+With just 2 characters from the mixed set, you can represent over 1.7 million distinct values
+(`1307^2`).
 
 ## Declaration
 
@@ -68,5 +72,5 @@ toolbox random characters --length 5 --kind mixed --no-confusing
 
 ## See Also
 
-* [Unicode Emoji Specification](https://unicode.org/reports/tr51/)
-* [Swift ArgumentParser](https://github.com/apple/swift-argument-parser)
+- [Unicode Emoji Specification](https://unicode.org/reports/tr51/)
+- [Swift ArgumentParser](https://github.com/apple/swift-argument-parser)

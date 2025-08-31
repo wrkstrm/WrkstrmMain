@@ -5,9 +5,11 @@
 
 [![🧹 Swift Lint| WrkstrmMain](https://github.com/wrkstrm/WrkstrmMain/actions/workflows/wrkstrm-main-swiftlint.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmMain/actions/workflows/wrkstrm-main-swiftlint.yml)
 [![🚧 Swift Test| WrkstrmMainTests](https://github.com/wrkstrm/WrkstrmMain/actions/workflows/wrkstrm-main-tests-swift.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmMain/actions/workflows/wrkstrm-main-tests-swift.yml)
+
 ---
 
-`WrkstrmMain` provides extensions to the Swift Main library, adding functionalities for string manipulation, collection processing, and more. Tested via GitHub Actions.
+`WrkstrmMain` provides extensions to the Swift Main library, adding functionalities for string
+manipulation, collection processing, and more. Tested via GitHub Actions.
 
 ## 🔑 Key Features
 
@@ -59,8 +61,7 @@ Import `WrkstrmMain` and utilize its extensions:
    import WrkstrmMain
    ```
 
-2. **🔨 Utilize Extensions**:
-   Leverage various extensions for enhanced functionality:
+2. **🔨 Utilize Extensions**: Leverage various extensions for enhanced functionality:
 
 Example Extensions:
 
@@ -68,9 +69,9 @@ Example Extensions:
 
 - `camelCaseToKebabCase()`: Convert a camelCase string to kebab-case.
 - `containsUniqueChars()`: Check if a string contains all unique characters.
-- `isPermutation(_:)`: Check if a string is a permutation of another string using a
-  frequency-based comparison.
-- ``*`` operator: Repeat a string by multiplying it with an integer.
+- `isPermutation(_:)`: Check if a string is a permutation of another string using a frequency-based
+  comparison.
+- `*` operator: Repeat a string by multiplying it with an integer.
 
 ### Collection Extensions
 
@@ -83,7 +84,8 @@ Example Extensions:
 
 ### `Optional` Comparable Extension
 
-  - `Optional<T>` where `T: Comparable`: Adds `<` and `>` comparison operators for optional values without requiring a full `Comparable` conformance.
+- `Optional<T>` where `T: Comparable`: Adds `<` and `>` comparison operators for optional values
+  without requiring a full `Comparable` conformance.
 
 ### Random String Utilities
 
@@ -102,9 +104,11 @@ let mixed = Random.mixed(length: 5, noConfusing: true)
 adds helpers for dealing with inconsistent API responses:
 
 - `decodeAllowingNullOrEmptyObject` maps `null`, the string "null", or `{}` to `nil`.
-- `decodeArrayAllowingNullOrSingle` normalizes `null`, a single object, or an array into an optional array.
+- `decodeArrayAllowingNullOrSingle` normalizes `null`, a single object, or an array into an optional
+  array.
 
-These functions prevent decoding failures for "no data" placeholders while still throwing when a value has an unexpected shape.
+These functions prevent decoding failures for "no data" placeholders while still throwing when a
+value has an unexpected shape.
 
 ```swift
 let object: JSON.AnyDictionary = ["name": "Alice", "age": 30]
@@ -125,9 +129,12 @@ struct Wrapper: Decodable {
 
 ### Path Utilities
 
-Filter arrays of path strings using the `sourceFiles`, `nibFiles`, `baseLocalizedNibFiles`, and `unlocalizedNibFiles` properties.
+Filter arrays of path strings using the `sourceFiles`, `nibFiles`, `baseLocalizedNibFiles`, and
+`unlocalizedNibFiles` properties.
 
-See the [Source File Filters documentation](Sources/WrkstrmMain/Documentation.docc/SourceFileFilters.md) for more examples.
+See the
+[Source File Filters documentation](Sources/WrkstrmMain/Documentation.docc/SourceFileFilters.md) for
+more examples.
 
 ```swift
 let paths = ["View.swift", "Main.storyboard", "Base.lproj/Main.storyboard"]
@@ -177,11 +184,11 @@ vm.assertDependencies()
 
 ## 🎨 Customization
 
-`WrkstrmMain` is built with extension in mind. You can tailor it to fit your
-project by tapping into a few key extension points:
+`WrkstrmMain` is built with extension in mind. You can tailor it to fit your project by tapping into
+a few key extension points:
 
-- **Random generators** – Extend the `Random` namespace with custom routines
-  for generating domain‑specific strings.
+- **Random generators** – Extend the `Random` namespace with custom routines for generating
+  domain‑specific strings.
 
   ```swift
   extension Random {
@@ -193,18 +200,15 @@ project by tapping into a few key extension points:
   }
   ```
 
-- **Custom collection types** – Build domain‑specific collections by composing
-  existing types such as `SortedArray` or by conforming to Swift's `Collection`
-  protocols.
+- **Custom collection types** – Build domain‑specific collections by composing existing types such
+  as `SortedArray` or by conforming to Swift's `Collection` protocols.
 
-These hooks make `WrkstrmMain` easy to integrate with project‑specific types
-and behaviors.
+These hooks make `WrkstrmMain` easy to integrate with project‑specific types and behaviors.
 
 ## 🧩 Dependency Injection
 
-Adopt the ``Injectable`` protocol to keep dependencies loosely coupled. Conforming
-types can accept resources from the outside and verify that everything is wired
-correctly.
+Adopt the `Injectable` protocol to keep dependencies loosely coupled. Conforming types can accept
+resources from the outside and verify that everything is wired correctly.
 
 ```swift
 struct NetworkService {
@@ -225,20 +229,20 @@ final class UserViewModel: Injectable {
 }
 ```
 
-See the [Injectable documentation](Sources/WrkstrmMain/Documentation.docc/Injectable.md)
-for a deeper explanation and more examples.
+See the [Injectable documentation](Sources/WrkstrmMain/Documentation.docc/Injectable.md) for a
+deeper explanation and more examples.
 
 ## 🧪 Testing
 
-Automated tests protect this library from regressions and document its
-expected behavior. They surface edge cases—like the permutation bug
-captured by our failing regression test—and give contributors confidence
-when refactoring. Please run `swift test` before submitting changes to
+Automated tests protect this library from regressions and document its expected behavior. They
+surface edge cases—like the permutation bug captured by our failing regression test—and give
+contributors confidence when refactoring. Please run `swift test` before submitting changes to
 ensure the codebase remains stable.
 
 ## 🤝 Contributing
 
-🌟 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+🌟 Contributions are what make the open-source community such an amazing place to learn, inspire,
+and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
