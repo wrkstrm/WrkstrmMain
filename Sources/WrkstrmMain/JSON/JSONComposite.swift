@@ -41,12 +41,11 @@ extension JSON {
         }
         return try first.encode(value)
       case .parallel:
-        if let rr {
-          let idx = _blockingAwait { await rr.next() }
-          return try encoders[idx].encode(value)
-        } else {
+        guard let rr else {
           return try first.encode(value)
         }
+        let idx = _blockingAwait { await rr.next() }
+        return try encoders[idx].encode(value)
       }
     }
   }
@@ -77,12 +76,11 @@ extension JSON {
         }
         return try first.decode(T.self, from: data)
       case .parallel:
-        if let rr {
-          let idx = _blockingAwait { await rr.next() }
-          return try decoders[idx].decode(T.self, from: data)
-        } else {
+        guard let rr else {
           return try first.decode(T.self, from: data)
         }
+        let idx = _blockingAwait { await rr.next() }
+        return try decoders[idx].decode(T.self, from: data)
       }
     }
   }
@@ -95,8 +93,14 @@ final class _AsyncBridge<T>: @unchecked Sendable {
   private let sem = DispatchSemaphore(value: 0)
   private var value: T!
   @usableFromInline init() {}
-  @usableFromInline func finish(_ v: T) { value = v; sem.signal() }
-  @usableFromInline func wait() -> T { sem.wait(); return value }
+  @usableFromInline func finish(_ v: T) {
+    value = v
+    sem.signal()
+  }
+  @usableFromInline func wait() -> T {
+    sem.wait()
+    return value
+  }
 }
 
 @inline(__always)

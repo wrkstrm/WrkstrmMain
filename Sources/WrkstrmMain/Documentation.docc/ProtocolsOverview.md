@@ -1,6 +1,6 @@
 @Metadata {
-  @Title("Protocols Overview")
-  @PageKind(article)
+@Title("Protocols Overview")
+@PageKind(article)
 }
 
 WrkstrmMain defines a small set of protocols intended to stay portable and easy to adapt.
@@ -46,4 +46,3 @@ final class Dashboard: Injectable {
   func assertDependencies() { precondition(resource != nil, "Missing parser") }
 }
 ```
-

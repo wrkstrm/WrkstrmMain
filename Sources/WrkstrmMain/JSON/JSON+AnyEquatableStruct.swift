@@ -5,4 +5,3 @@ extension JSON {
   /// Useful for dictionary values that need to be compared for equality.
   public struct AnyEquatableStruct: Any, Equatable {}
 }
-

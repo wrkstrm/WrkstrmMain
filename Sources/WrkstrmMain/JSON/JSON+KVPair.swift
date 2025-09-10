@@ -22,4 +22,3 @@ extension JSON {
     case any(String, String)
   }
 }
-

@@ -13,4 +13,3 @@ extension JSON {
     public static func == (_: Self, _: Self) -> Bool { true }
   }
 }
-

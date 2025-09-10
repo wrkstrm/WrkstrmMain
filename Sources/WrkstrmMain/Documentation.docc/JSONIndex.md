@@ -1,6 +1,6 @@
 @Metadata {
-  @Title("JSON Types Index")
-  @PageKind(article)
+@Title("JSON Types Index")
+@PageKind(article)
 }
 
 An overview of the small, focused files and symbols that make up the `JSON` namespace in WrkstrmMain.
@@ -8,24 +8,29 @@ An overview of the small, focused files and symbols that make up the `JSON` name
 ## Topics
 
 ### Namespace
-- ``JSON``
+
+- `JSON`
 
 ### Core Types
-- ``JSON/Parser``
-- ``JSON/ParserInstrumentationDetails``
+
+- `JSON/Parser`
+- `JSON/ParserInstrumentationDetails`
 
 ### Typealiases and Helpers
-- ``JSON/AnyDictionary``
-- ``JSON/AnyEquatableStruct``
-- ``JSON/AnyEquatableStructDictionary``
-- ``JSON/EmptyCodableStruct``
+
+- `JSON/AnyDictionary`
+- `JSON/AnyEquatableStruct`
+- `JSON/AnyEquatableStructDictionary`
+- `JSON/EmptyCodableStruct`
 
 ### Value Enums
-- ``JSON/KVPair``
-- ``JSON/AnyEquatableArrayEnum``
-- ``JSON/AnyEquatableDictionaryEnum``
+
+- `JSON/KVPair`
+- `JSON/AnyEquatableArrayEnum`
+- `JSON/AnyEquatableDictionaryEnum`
 
 ### Composite Coders
-- ``JSON/CompositeMode``
-- ``JSON/CompositeEncoding``
-- ``JSON/CompositeDecoding``
+
+- `JSON/CompositeMode`
+- `JSON/CompositeEncoding`
+- `JSON/CompositeDecoding`

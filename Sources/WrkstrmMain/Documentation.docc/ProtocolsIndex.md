@@ -1,6 +1,6 @@
 @Metadata {
-  @Title("Protocols Index")
-  @PageKind(article)
+@Title("Protocols Index")
+@PageKind(article)
 }
 
 Core protocols provided by WrkstrmMain.
@@ -8,9 +8,10 @@ Core protocols provided by WrkstrmMain.
 ## Topics
 
 ### JSON Coding Protocols
-- ``JSONDataEncoding``
-- ``JSONDataDecoding``
+
+- `JSONDataEncoding`
+- `JSONDataDecoding`
 
 ### Dependency Injection
-- ``Injectable``
 
+- `Injectable`

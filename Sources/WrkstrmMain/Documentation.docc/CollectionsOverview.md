@@ -1,6 +1,6 @@
 @Metadata {
-  @Title("Collections Overview")
-  @PageKind(article)
+@Title("Collections Overview")
+@PageKind(article)
 }
 
 WrkstrmMain includes a few lightweight, reusable collection types for day‑to‑day algorithms.
@@ -42,4 +42,3 @@ for (i, value) in ["a", "b"].indexed() {
   print(i, value)
 }
 ```
-
