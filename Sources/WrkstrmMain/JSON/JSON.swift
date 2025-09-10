@@ -1,50 +1,5 @@
+// This file defines the JSON namespace and points to extensions
+// that add concrete nested types in smaller files.
+
 /// A namespace enum for JSON-related types and utilities.
-///
-/// `JSON` serves as a namespace for various types that facilitate working with JSON data,
-/// such as dictionaries with `String` keys and `Any` or `AnyEquatableStruct` values.
-public enum JSON {
-  /// A type alias representing a dictionary with `String` keys and `Any` values.
-  ///
-  /// This type is used for representing JSON objects in a flexible manner, allowing for any type of
-  /// value.
-  public typealias AnyDictionary = [String: Any]
-
-  /// A type alias for a dictionary with `String` keys and `AnyEquatableStruct` values.
-  ///
-  /// This type is particularly useful when you need a JSON-like dictionary where the values need to
-  /// be comparable, such as when checking for changes in values or when implementing certain
-  /// caching mechanisms.
-  public typealias AnyEquatableStructDictionary = [String: AnyEquatableStruct]
-
-  /// A struct that can hold any value and conform to `Equatable`.
-  ///
-  /// This struct is useful for dictionary values that need to be compared for equality.
-  /// As standard Swift `Any` type doesn't conform to `Equatable`, this struct wraps any value and
-  /// provides equatability.
-  public struct AnyEquatableStruct: Any, Equatable {}
-
-  /// An empty struct conforming to `Codable`.
-  ///
-  /// This struct can be used as a placeholder or marker type where a `Codable` type is required
-  /// but no data needs to be encoded or decoded.
-  ///
-  /// When decoding, it validates that the underlying JSON value is an empty object (`{}`).
-  /// Attempts to decode any other shape result in a decoding error, which is used by
-  /// `decodeAllowingNullOrEmptyObject` to distinguish empty objects from real values.
-  struct EmptyCodableStruct: Codable {
-    init() {}
-
-    init(from decoder: Decoder) throws {
-      let container = try decoder.container(keyedBy: AnyCodingKey.self)
-      guard container.allKeys.isEmpty else {
-        throw DecodingError.dataCorrupted(
-          .init(codingPath: decoder.codingPath, debugDescription: "Expected empty object")
-        )
-      }
-    }
-
-    func encode(to encoder: Encoder) throws {
-      _ = encoder.container(keyedBy: AnyCodingKey.self)
-    }
-  }
-}
+public enum JSON {}

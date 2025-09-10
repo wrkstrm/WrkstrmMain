@@ -1,9 +1,7 @@
-/// A protocol that defines dependency injection behavior for a class or struct.
+/// A small protocol for dependency injection in types.
 ///
-/// Implementing this protocol allows an object to have specific resources or dependencies injected
-/// into it. It's typically used in designs where dependencies (like services, data sources, etc.)
-/// need to be provided from outside. The protocol defines a method for injecting the dependency
-/// and a method to assert that dependencies are set correctly.
+/// Conforming types define a `Resource` and implement `inject(_:)` to receive it
+/// along with `assertDependencies()` to validate setup during development/tests.
 public protocol Injectable {
   /// The type of resource or dependency that will be injected.
   associatedtype Resource

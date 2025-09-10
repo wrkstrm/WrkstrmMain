@@ -99,7 +99,10 @@ let mixed = Random.mixed(length: 5, noConfusing: true)
 
 ### JSON Helpers
 
-[JSON.swift](Sources/WrkstrmMain/JSON/JSON.swift) defines `JSON.AnyDictionary` and
+See DocC: open the "WrkstrmMain" documentation in Xcode or `swift-docc` and start with the
+[JSON Types Index](Sources/WrkstrmMain/Documentation.docc/JSONIndex.md). The `JSON` namespace is
+split into small files for clarity.
+
 [`KeyedDecodingContainer+FuzzyDecoding.swift`](Sources/WrkstrmMain/JSON/KeyedDecodingContainer+FuzzyDecoding.swift)
 adds helpers for dealing with inconsistent API responses:
 
@@ -126,6 +129,12 @@ struct Wrapper: Decodable {
     }
 }
 ```
+
+## 🏁 Flagship + Docs
+
+WrkstrmMain is a flagship library: we pressure‑test best practices here (API design, DocC, tests,
+observability). Explore the DocC articles under `Sources/WrkstrmMain/Documentation.docc/` for
+symbol topics and indices.
 
 ### Path Utilities
 
