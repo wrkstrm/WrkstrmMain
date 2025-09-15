@@ -1,5 +1,3 @@
-import Foundation
-
 /// An extension on `Array` where elements are of type `String`.
 /// This extension provides utility methods for filtering arrays of file paths based on file types
 /// and localization.

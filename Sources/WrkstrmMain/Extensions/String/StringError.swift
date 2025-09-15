@@ -1,7 +1,5 @@
-import Foundation
-
 /// A simple error type that wraps a string message.
-public struct StringError: Error, CustomStringConvertible, CustomNSError {
+public struct StringError: Error, CustomStringConvertible {
   /// The underlying message for this error.
   public let message: String
 
@@ -13,9 +11,4 @@ public struct StringError: Error, CustomStringConvertible, CustomNSError {
 
   /// A textual representation of the error message.
   public var description: String { message }
-
-  // CustomNSError to surface the message via localizedDescription
-  public static var errorDomain: String { "WrkstrmMain.StringError" }
-  public var errorCode: Int { 1 }
-  public var errorUserInfo: [String: Any] { [NSLocalizedDescriptionKey: message] }
 }

@@ -1,5 +1,3 @@
-import Foundation
-
 /// A collection wrapper that provides both the index and element of each entry in a
 /// `RandomAccessCollection`.
 ///
