@@ -1,7 +1,4 @@
-@Metadata {
-@Title("Random Utilities Index")
-@PageKind(article)
-}
+# Random Utilities Index
 
 Random utility types in WrkstrmMain.
 
@@ -9,4 +6,4 @@ Random utility types in WrkstrmMain.
 
 ### Random
 
-- `Random`
+- ``Random``

@@ -7,9 +7,9 @@ configured.
 
 ### Managing Dependencies
 
-- `Resource`
-- `inject(_:)`
-- `assertDependencies()`
+- ``WrkstrmMain/Injectable/Resource``
+- ``WrkstrmMain/Injectable/inject(_:)``
+- ``WrkstrmMain/Injectable/assertDependencies()``
 
 ## Overview
 

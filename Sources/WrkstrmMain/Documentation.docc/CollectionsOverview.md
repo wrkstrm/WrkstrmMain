@@ -1,7 +1,4 @@
-@Metadata {
-@Title("Collections Overview")
-@PageKind(article)
-}
+# Collections Overview
 
 WrkstrmMain includes a few lightweight, reusable collection types for day‑to‑day algorithms.
 

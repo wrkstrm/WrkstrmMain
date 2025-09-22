@@ -10,20 +10,17 @@ visually confusing characters.
 
 ### Generating Random Strings
 
-- `printableASCII(length:noConfusing:)`
-- `emoji(length:)`
-- `mixed(length:noConfusing:)`
+- ``WrkstrmMain/Random/printableASCII(length:noConfusing:)``
+- ``WrkstrmMain/Random/emoji(length:)``
+- ``WrkstrmMain/Random/mixed(length:noConfusing:)``
 
 ## Overview
 
-The `Random` namespace provides static functions to generate strings using different character sets:
-
-- Printable ASCII (`U+0020` to `U+007E`)
-- Emoji with default presentation (excluding modifier and multi-codepoint emoji)
-- A mixed combination of the two
-
-Each function supports variable lengths and, for ASCII and mixed modes, a `noConfusing` option to
-exclude characters like `0`, `O`, `1`, `l`, and `I`.
+The `Random` namespace provides static functions to generate strings using different character sets.
+Printable ASCII covers characters from U+0020 through U+007E, emoji covers glyphs with a default
+emoji presentation (excluding modifier and multi-codepoint emoji), and the mixed mode blends the
+two. Each function supports variable lengths and, for ASCII and mixed modes, a `noConfusing` option
+to exclude characters like `0`, `O`, `1`, `l`, and `I`.
 
 ## Example Usage
 
@@ -43,12 +40,9 @@ Random.mixed(length: 5, noConfusing: true)
 
 ## Character Pools
 
-- ASCII character pool contains 95 characters
-- Emoji pool contains \~1212 characters with default emoji presentation
-- Mixed pool combines both for 1307 total characters
-
-With just 2 characters from the mixed set, you can represent over 1.7 million distinct values
-(`1307^2`).
+The ASCII pool contains 95 symbols. The emoji pool spans approximately 1,212 characters with
+default emoji presentation. The mixed pool combines both for 1,307 total characters—two characters
+from the mixed set already represent more than 1.7 million distinct values (`1307^2`).
 
 ## Declaration
 

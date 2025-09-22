@@ -1,7 +1,4 @@
-@Metadata {
-@Title("Protocols Overview")
-@PageKind(article)
-}
+# Protocols Overview
 
 WrkstrmMain defines a small set of protocols intended to stay portable and easy to adapt.
 

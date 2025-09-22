@@ -7,11 +7,11 @@ truly malformed data.
 
 ### Handling Inconsistent Objects
 
-- `KeyedDecodingContainer/decodeAllowingNullOrEmptyObject(_:forKey:)`
+- ``Swift/KeyedDecodingContainer/decodeAllowingNullOrEmptyObject(_:forKey:)``
 
 ### Handling Arrays or Single Objects
 
-- `KeyedDecodingContainer/decodeArrayAllowingNullOrSingle(_:forKey:)`
+- ``Swift/KeyedDecodingContainer/decodeArrayAllowingNullOrSingle(_:forKey:)``
 
 ## Overview
 

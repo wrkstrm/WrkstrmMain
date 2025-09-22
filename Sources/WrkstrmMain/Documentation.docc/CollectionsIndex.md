@@ -1,7 +1,4 @@
-@Metadata {
-@Title("Custom Collections Index")
-@PageKind(article)
-}
+# Custom Collections Index
 
 An index of custom collection types in WrkstrmMain.
 
@@ -9,7 +6,7 @@ An index of custom collection types in WrkstrmMain.
 
 ### Collections
 
-- `BinaryTree`
-- `Tree`
-- `SortedArray`
-- `IndexedCollection`
+- ``WrkstrmMain/BinaryTree``
+- ``WrkstrmMain/Tree``
+- ``WrkstrmMain/SortedArray``
+- ``WrkstrmMain/IndexedCollection``

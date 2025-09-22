@@ -13,27 +13,37 @@
 ///   print("Element: \(item.element) at index: \(item.index)")
 /// }
 /// ```
-struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
+public struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   /// The type of index used in the base collection.
-  typealias Index = Base.Index
+  public typealias Index = Base.Index
 
   /// The type of element represented as a tuple containing both the index and the element.
-  typealias Element = (index: Index, element: Base.Element)
+  public typealias Element = (index: Index, element: Base.Element)
 
   /// The base collection.
-  let base: Base
+  public let base: Base
+
+  /// Creates an indexed view over the provided base collection.
+  /// - Parameter base: The collection to wrap.
+  public init(base: Base) { self.base = base }
 
   /// The start index of the collection.
-  var startIndex: Index { base.startIndex }
+  public var startIndex: Index { base.startIndex }
 
   /// The end index of the collection.
-  var endIndex: Index { base.endIndex }
+  public var endIndex: Index { base.endIndex }
+
+  /// The last element in the collection, if any.
+  public var last: Element? {
+    guard let lastIndex = base.indices.last else { return nil }
+    return (index: lastIndex, element: base[lastIndex])
+  }
 
   /// Returns the index immediately after the given index.
   ///
   /// - Parameter i: A valid index of the collection. `i` must be less than `endIndex`.
   /// - Returns: The index value immediately after `i`.
-  func index(after i: Index) -> Index {
+  public func index(after i: Index) -> Index {
     base.index(after: i)
   }
 
@@ -41,7 +51,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   ///
   /// - Parameter i: A valid index of the collection. `i` must be greater than `startIndex`.
   /// - Returns: The index value immediately before `i`.
-  func index(before i: Index) -> Index {
+  public func index(before i: Index) -> Index {
     base.index(before: i)
   }
 
@@ -54,7 +64,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   /// is the same value that would be returned by the default implementation of
   /// `index(_:offsetBy:)`. If `distance` is negative, this is the same value that would be
   /// returned by the default implementation of `index(_:offsetBy:)`.
-  func index(_ i: Index, offsetBy distance: Int) -> Index {
+  public func index(_ i: Index, offsetBy distance: Int) -> Index {
     base.index(i, offsetBy: distance)
   }
 
@@ -67,7 +77,7 @@ struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {
   /// - Parameter position: The position of the element to access. `position` must be a valid index
   /// of the collection that is not equal to the `endIndex`.
   /// - Returns: A tuple containing both the index and the element at position `position`.
-  subscript(position: Index) -> Element {
+  public subscript(position: Index) -> Element {
     (index: position, element: base[position])
   }
 }
