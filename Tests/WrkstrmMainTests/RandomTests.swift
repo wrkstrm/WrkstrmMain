@@ -15,18 +15,6 @@ struct RandomTests {
     #expect(Random.printableASCII(length: 0).isEmpty)
   }
 
-  @Test
-  // Verifies emoji generator returns nothing when length is zero.
-  func emojiZeroLengthReturnsEmpty() {
-    #expect(Random.emoji(length: 0).isEmpty)
-  }
-
-  @Test
-  // Checks mixed mode respects zero-length requests across character sets.
-  func mixedZeroLengthReturnsEmpty() {
-    #expect(Random.mixed(length: 0).isEmpty)
-  }
-
   // MARK: - noConfusing checks
   // Ambiguous characters are difficult to distinguish (e.g., `0` vs `O`).
   // These tests ensure the `noConfusing` flag filters them out for
@@ -38,13 +26,6 @@ struct RandomTests {
   // ASCII generator should omit ambiguous characters when requested.
   func asciiNoConfusingOmitsAmbiguousCharacters() {
     let result = Random.printableASCII(length: 100, noConfusing: true)
-    #expect(result.allSatisfy { !ambiguous.contains($0) })
-  }
-
-  @Test
-  // Mixed generator also needs to exclude ambiguous characters.
-  func mixedNoConfusingOmitsAmbiguousCharacters() {
-    let result = Random.mixed(length: 100, noConfusing: true)
     #expect(result.allSatisfy { !ambiguous.contains($0) })
   }
 
@@ -61,45 +42,4 @@ struct RandomTests {
     #expect(result.count == length)
   }
 
-  @Test
-  // Emoji generator should match its requested length as well.
-  func emojiHonorsRequestedLength() {
-    let length = 32
-    let result = Random.emoji(length: length)
-    #expect(result.count == length)
-  }
-
-  @Test
-  // Mixed generator combines both character sets and must still respect length.
-  func mixedHonorsRequestedLength() {
-    let length = 48
-    let result = Random.mixed(length: length)
-    #expect(result.count == length)
-  }
-
-  // MARK: - Emoji restrictions
-  // Generated emoji should mirror the restrictions used when building the
-  // emoji table to avoid combining marks or variation selectors slipping in.
-
-  @Test
-  // Emoji output should consist solely of standalone emoji scalars.
-  func emojiUsesStandaloneEmoji() {
-    let result = Random.emoji(length: 128)
-    let allStandalone = result.allSatisfy { ch in
-      ch.unicodeScalars.count == 1 && Random.isStandaloneEmoji(ch.unicodeScalars.first!)
-    }
-    #expect(allStandalone)
-  }
-
-  @Test
-  // Mixed output should apply the same emoji restrictions for non-ASCII.
-  func mixedEmojiUsesSameRestrictions() {
-    let result = Random.mixed(length: 128)
-    let allValid = result.allSatisfy { ch in
-      let scalar = ch.unicodeScalars.first!
-      if scalar.isASCII { return ch.unicodeScalars.count == 1 }
-      return ch.unicodeScalars.count == 1 && Random.isStandaloneEmoji(scalar)
-    }
-    #expect(allValid)
-  }
 }

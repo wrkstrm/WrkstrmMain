@@ -93,8 +93,8 @@ See [Random.swift](Sources/WrkstrmMain/Random/Random.swift).
 
 ```swift
 let ascii = Random.printableASCII(length: 8)
-let emoji = Random.emoji(length: 3)
-let mixed = Random.mixed(length: 5, noConfusing: true)
+// For emoji and mixed strings, add the WrkstrmEmoji package and
+// call EmojiRandomizer.emojiString(length:) or `.mixedString(...)`.
 ```
 
 ### JSON Helpers
