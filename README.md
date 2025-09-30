@@ -130,6 +130,15 @@ struct Wrapper: Decodable {
 }
 ```
 
+#### Bridged Writers (via WrkstrmFoundation)
+
+WrkstrmFoundation extends this `JSON` namespace with human‑friendly writers and formatting:
+
+- `JSON.Formatting.humanEncoder` / `JSON.Formatting.humanOptions`
+- `JSON.FileWriter.write(_:,to:)` and `.writeJSONObject(_:,to:)`
+
+Import WrkstrmFoundation alongside WrkstrmMain to access these APIs.
+
 ## 🏁 Flagship + Docs
 
 WrkstrmMain is a flagship library: we pressure‑test best practices here (API design, DocC, tests,
