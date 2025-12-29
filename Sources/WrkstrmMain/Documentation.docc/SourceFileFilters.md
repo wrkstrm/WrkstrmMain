@@ -11,11 +11,11 @@ Builder files from a mixed list of paths.
 
 ```swift
 let files = [
-    "View.swift",
-    "Main.storyboard",
-    "Base.lproj/Main.storyboard",
-    "Base.lproj/Settings.xib",
-    "Debug/Main.storyboard"
+  "View.swift",
+  "Main.storyboard",
+  "Base.lproj/Main.storyboard",
+  "Base.lproj/Settings.xib",
+  "Debug/Main.storyboard",
 ]
 
 files.sourceFiles

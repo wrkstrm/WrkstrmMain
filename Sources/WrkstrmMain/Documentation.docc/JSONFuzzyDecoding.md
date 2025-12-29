@@ -26,15 +26,15 @@ aren't silently ignored.
 
 ```swift
 struct Wrapper: Decodable {
-    let item: Item?
-    let items: [Item]?
+  let item: Item?
+  let items: [Item]?
 
-    enum CodingKeys: String, CodingKey { case item, items }
+  enum CodingKeys: String, CodingKey { case item, items }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        item = try container.decodeAllowingNullOrEmptyObject(Item.self, forKey: .item)
-        items = try container.decodeArrayAllowingNullOrSingle(Item.self, forKey: .items)
-    }
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    item = try container.decodeAllowingNullOrEmptyObject(Item.self, forKey: .item)
+    items = try container.decodeArrayAllowingNullOrSingle(Item.self, forKey: .items)
+  }
 }
 ```

@@ -21,19 +21,19 @@ store the resource and `assertDependencies()` to ensure everything is wired corr
 
 ```swift
 struct NetworkService {
-    func request(_ path: String) { /* ... */ }
+  func request(_ path: String) { /* ... */  }
 }
 
 final class UserViewModel: Injectable {
-    typealias Resource = NetworkService
-    private var service: NetworkService?
+  typealias Resource = NetworkService
+  private var service: NetworkService?
 
-    func inject(_ resource: NetworkService) {
-        service = resource
-    }
+  func inject(_ resource: NetworkService) {
+    service = resource
+  }
 
-    func assertDependencies() {
-        precondition(service != nil, "NetworkService must be injected")
-    }
+  func assertDependencies() {
+    precondition(service != nil, "NetworkService must be injected")
+  }
 }
 ```

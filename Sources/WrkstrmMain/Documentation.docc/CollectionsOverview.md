@@ -9,9 +9,9 @@ WrkstrmMain includes a few lightweight, reusable collection types for dayâ€‘toâ€
 ```swift
 import WrkstrmMain
 
-var numbers = SortedArray(unsorted: [3, 1, 2]) // sorted: [1, 2, 3]
-numbers.insert(5)                              // [1, 2, 3, 5]
-numbers.insert(0)                              // [0, 1, 2, 3, 5]
+var numbers = SortedArray(unsorted: [3, 1, 2])  // sorted: [1, 2, 3]
+numbers.insert(5)  // [1, 2, 3, 5]
+numbers.insert(0)  // [0, 1, 2, 3, 5]
 ```
 
 ## BinaryTree
