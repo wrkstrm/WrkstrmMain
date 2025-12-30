@@ -17,9 +17,6 @@ let package = Package(
   products: [
     .library(name: "WrkstrmMain", targets: ["WrkstrmMain"])
   ],
-  dependencies: [
-    .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.0")
-  ],
   targets: [
     .target(
       name: "WrkstrmMain",
