@@ -9,7 +9,7 @@ truly malformed data.
 
 - ``Swift/KeyedDecodingContainer/decodeAllowingNullOrEmptyObject(_:forKey:)``
 
-### Handling Arrays or Single Objects
+### Handling Arrays Or Single Objects
 
 - ``Swift/KeyedDecodingContainer/decodeArrayAllowingNullOrSingle(_:forKey:)``
 
